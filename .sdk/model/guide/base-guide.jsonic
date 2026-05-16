@@ -1,0 +1,14 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 1
+  metrics: count: method: 1
+
+  entity: error_handling: {
+    path: "/404": {
+      op: list: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "404 Error Handler",
+    "description": "This API is designed to help developers manage and respond to 404 errors on their websites. It provides insights into potential causes and offers solutions for correcting broken links and missing files to improve user experience.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "http://ccdb.hemiola.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://ccdb.hemiola.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/404": {
+      "get": {
+        "summary": "Get 404 error information",
+        "description": "Retrieves information about 404 errors, including potential causes and solutions for correcting broken links and missing files",
+        "operationId": "get404ErrorInfo",
+        "tags": [
+          "Error Handling"
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "The URL that resulted in a 404 error",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          {
+            "name": "referrer",
+            "in": "query",
+            "description": "The referring URL where the broken link was found",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with 404 error analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "The requested URL that returned 404"
+                    },
+                    "causes": {
+                      "type": "array",
+                      "description": "Potential causes for the 404 error",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "solutions": {
+                      "type": "array",
+                      "description": "Suggested solutions to fix the error",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp when the error was recorded"
+                    }
+                  }
+                },
+                "example": {
+                  "url": "https://example.com/missing-page",
+                  "causes": [
+                    "Page has been moved or deleted",
+                    "URL may contain a typo",
+                    "Link is outdated"
+                  ],
+                  "solutions": [
+                    "Check for redirects or updated URLs",
+                    "Verify spelling in the URL",
+                    "Use site search to find the content"
+                  ],
+                  "timestamp": "2024-01-15T12:00:00Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Error Handling",
+      "description": "Operations related to managing and analyzing 404 errors"
+    }
+  ]
+}

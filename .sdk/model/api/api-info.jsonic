@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "http://ccdb.hemiola.com/"
+      }
+      description: "This API is designed to help developers manage and respond to 404 errors on their websites. It provides insights into potential causes and offers solutions for correcting broken links and missing files to improve user experience."
+      servers: [
+        {
+          description: "Production server"
+          url: "http://ccdb.hemiola.com"
+        }
+      ]
+      title: "404 Error Handler"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
