@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/n404-error-handler-sdk/core"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/core"
 )
 
 type LogFeature struct {

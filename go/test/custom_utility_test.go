@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/n404-error-handler-sdk"
+	sdk "github.com/voxgig-sdk/n404-error-handler-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

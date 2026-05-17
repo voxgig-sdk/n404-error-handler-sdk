@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/n404-error-handler-sdk/core"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

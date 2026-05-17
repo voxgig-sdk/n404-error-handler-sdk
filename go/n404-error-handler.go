@@ -1,10 +1,10 @@
 package voxgign404errorhandlersdk
 
 import (
-	"github.com/voxgig-sdk/n404-error-handler-sdk/core"
-	"github.com/voxgig-sdk/n404-error-handler-sdk/entity"
-	"github.com/voxgig-sdk/n404-error-handler-sdk/feature"
-	_ "github.com/voxgig-sdk/n404-error-handler-sdk/utility"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/core"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/entity"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/feature"
+	_ "github.com/voxgig-sdk/n404-error-handler-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

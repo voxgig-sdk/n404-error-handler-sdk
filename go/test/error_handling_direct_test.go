@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/n404-error-handler-sdk"
-	"github.com/voxgig-sdk/n404-error-handler-sdk/core"
+	sdk "github.com/voxgig-sdk/n404-error-handler-sdk/go"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/core"
 )
 
 func TestErrorHandlingDirect(t *testing.T) {

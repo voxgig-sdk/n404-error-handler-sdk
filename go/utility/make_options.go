@@ -3,9 +3,9 @@ package utility
 import (
 	"strings"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/n404-error-handler-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/n404-error-handler-sdk/core"
+	"github.com/voxgig-sdk/n404-error-handler-sdk/go/core"
 )
 
 func makeOptionsUtil(ctx *core.Context) map[string]any {

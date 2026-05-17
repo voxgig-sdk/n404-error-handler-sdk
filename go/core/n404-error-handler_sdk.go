@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/n404-error-handler-sdk/go/utility/struct"
 )
 
 type N404ErrorHandlerSDK struct {
