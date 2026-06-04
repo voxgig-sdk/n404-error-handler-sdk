@@ -62,14 +62,12 @@ def error_handling_direct_setup(mockres)
   env = Runner.env_override({
     "N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID" => {},
     "N___ERRORHANDLER_TEST_LIVE" => "FALSE",
-    "N___ERRORHANDLER_APIKEY" => "NONE",
   })
 
   live = env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["N___ERRORHANDLER_APIKEY"],
     }
     client = N404ErrorHandlerSDK.new(merged_opts)
     return {

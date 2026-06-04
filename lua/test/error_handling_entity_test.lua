@@ -92,7 +92,6 @@ function error_handling_basic_setup(extra)
     ["N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID"] = idmap,
     ["N___ERRORHANDLER_TEST_LIVE"] = "FALSE",
     ["N___ERRORHANDLER_TEST_EXPLAIN"] = "FALSE",
-    ["N___ERRORHANDLER_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function error_handling_basic_setup(extra)
   if env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["N___ERRORHANDLER_APIKEY"],
       },
       extra or {},
     })

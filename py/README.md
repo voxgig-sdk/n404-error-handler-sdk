@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from n404errorhandler_sdk import N404ErrorHandlerSDK
 
-client = N404ErrorHandlerSDK({
-    "apikey": os.environ.get("N404-ERROR-HANDLER_APIKEY"),
-})
+client = N404ErrorHandlerSDK({})
 ```
 
 ### 2. List errorhandlings
@@ -121,7 +118,6 @@ Create a `.env.local` file at the project root:
 
 ```
 N404-ERROR-HANDLER_TEST_LIVE=TRUE
-N404-ERROR-HANDLER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

@@ -63,14 +63,12 @@ function error_handling_direct_setup(mockres)
   local env = runner.env_override({
     ["N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID"] = {},
     ["N___ERRORHANDLER_TEST_LIVE"] = "FALSE",
-    ["N___ERRORHANDLER_APIKEY"] = "NONE",
   })
 
   local live = env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["N___ERRORHANDLER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

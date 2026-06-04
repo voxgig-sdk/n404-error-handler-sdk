@@ -86,7 +86,6 @@ function error_handling_basic_setup($extra)
         "N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID" => $idmap,
         "N___ERRORHANDLER_TEST_LIVE" => "FALSE",
         "N___ERRORHANDLER_TEST_EXPLAIN" => "FALSE",
-        "N___ERRORHANDLER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function error_handling_basic_setup($extra)
     if ($env["N___ERRORHANDLER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["N___ERRORHANDLER_APIKEY"],
             ],
             $extra ?? [],
         ]);
