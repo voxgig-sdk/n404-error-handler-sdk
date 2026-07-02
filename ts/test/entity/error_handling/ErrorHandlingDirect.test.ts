@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID': {},
     'N___ERRORHANDLER_TEST_LIVE': 'FALSE',
+    'N___ERRORHANDLER_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.N___ERRORHANDLER_TEST_LIVE
 
   if (live) {
     const client = new N404ErrorHandlerSDK({
+      apikey: env.N___ERRORHANDLER_APIKEY,
     })
 
     let idmap: any = env['N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID']

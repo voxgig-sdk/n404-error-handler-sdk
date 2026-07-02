@@ -93,12 +93,14 @@ func error_handlingDirectSetup(mockres any) *error_handlingDirectSetupResult {
 	env := envOverride(map[string]any{
 		"N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID": map[string]any{},
 		"N___ERRORHANDLER_TEST_LIVE":    "FALSE",
+		"N___ERRORHANDLER_APIKEY":       "NONE",
 	})
 
 	live := env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["N___ERRORHANDLER_APIKEY"],
 		}
 		client := sdk.NewN404ErrorHandlerSDK(mergedOpts)
 

@@ -1,6 +1,11 @@
 # N404ErrorHandler TypeScript SDK
 
-The TypeScript SDK for the N404ErrorHandler API. Provides a type-safe, entity-oriented interface with full async/await support.
+
+
+The TypeScript SDK for the N404ErrorHandler API — a type-safe, entity-oriented client with full async/await support.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -17,7 +22,9 @@ loading a specific record.
 ```ts
 import { N404ErrorHandlerSDK } from 'n404-error-handler'
 
-const client = new N404ErrorHandlerSDK({})
+const client = new N404ErrorHandlerSDK({
+  apikey: process.env.N404-ERROR-HANDLER_APIKEY,
+})
 ```
 
 ### 2. List errorhandlings
@@ -82,7 +89,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new N404ErrorHandlerSDK()
+const client = new N404ErrorHandlerSDK({ apikey: '...' })
 const testClient = client.tester()
 ```
 
@@ -118,6 +125,7 @@ const logger = {
 }
 
 const client = new N404ErrorHandlerSDK({
+  apikey: '...',
   extend: [logger],
 })
 ```
@@ -128,6 +136,7 @@ Create a `.env.local` file at the project root:
 
 ```
 N404-ERROR-HANDLER_TEST_LIVE=TRUE
+N404-ERROR-HANDLER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,6 +154,7 @@ cd ts && npm test
 
 ```ts
 new N404ErrorHandlerSDK(options?: {
+  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -155,6 +165,7 @@ new N404ErrorHandlerSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

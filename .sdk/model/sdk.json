@@ -1,39 +1,13 @@
 {
-  "name": "n404-error-handler",
-  "origin": "voxgig-sdk",
   "def": "404-error-handler_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "url": "http://ccdb.hemiola.com/"
-        },
-        "description": "This API is designed to help developers manage and respond to 404 errors on their websites. It provides insights into potential causes and offers solutions for correcting broken links and missing files to improve user experience.",
-        "servers": [
-          {
-            "description": "Production server",
-            "url": "http://ccdb.hemiola.com"
-          }
-        ],
-        "title": "404 Error Handler",
-        "version": "1.0.0",
-        "tagline": "Chinese Character Web API serving Unihan data for the ~20,902 CJK Unified Ideographs (despite the misleading SDK title)",
-        "homepage": "http://ccdb.hemiola.com/",
-        "docs_url": "http://ccdb.hemiola.com/",
-        "license_short": "Unspecified; underlying data is from the Unicode Consortium's Unihan Database",
-        "license_md": "- The service itself (`ccdb.hemiola.com`) does not publish a licence on its landing page.\n- Data is sourced from the [Unihan Database](http://www.unicode.org/charts/unihan.html) provided by [The Unicode Consortium](http://www.unicode.org/); reuse of that data is governed by the Unicode terms.\n- The freepublicapis.com listing currently reports the service as unreachable (100% error rate at last check), so production use is not advisable.",
-        "about_md": "Note on naming: this SDK is slugged `n404-error-handler` and titled \"404 Error Handler\", but the configured server `http://ccdb.hemiola.com/` is in fact the **Chinese Character Web API** (CCDB = Chinese Character Database), a small read-only REST-like service authored by the operator of [hemiola.com](http://hemiola.com/) and posted in 2011. The \"404 Error Handler\" / credit-card-database labels appear to be incorrect metadata on the upstream catalogue entry rather than a description of what the server actually returns.\n\nThe API exposes character information drawn from the [Unihan Database](http://www.unicode.org/charts/unihan.html), restricted to the 20,902 CJK Unified Ideographs in the `U+4E00`–`U+9FFF` block. It is JSON-only, GET-based (POST is accepted as a synonym for GET; PUT and DELETE are not), and has CORS enabled for browser use.\n\nWhat you can do with the real endpoint:\n\n- List characters by Kangxi radical, e.g. `GET /characters/radicals/{n}` (the documented example is `/characters/radicals/85`).\n- Filter results by character set with a `filter` query parameter — supported names include `gb` (GB2312), `big5`, `big5a`, `big5b`, `sjis` (Shift JIS), `simplified`, and `simplifiable`, with `!` for negation.\n- Choose returned fields via `fields=`, e.g. `fields=kDefinition,kMandarin` for the English gloss and Pīnyīn reading.\n- Replace results with a count using the `count` parameter.\n\nOperational notes: the service is a small personal project running on a LAMP stack; it has no published auth, rate-limit, or SLA, and at the time of writing third-party monitors report the host as down. Treat it as a curiosity / learning aid rather than a dependable backend.",
-        "entity_desc": {
-          "error_handling": "Listed as the sole entity grouping in this SDK, but it does not correspond to anything visible on the live `ccdb.hemiola.com` service, which exposes Chinese-character lookups (e.g. `/characters/radicals/{n}`) rather than any error-handling resource."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -42,62 +16,68 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "error_handling": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "caus",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "solution",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "timestamp",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "url",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "error_handling",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "referrer",
                         "orig": "referrer",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "url",
                         "orig": "url",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -115,14 +95,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -130,9 +107,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -140,6 +114,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -148,25 +130,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -182,20 +150,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -210,23 +190,30 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicErrorHandlingFlow": {
+          "active": true,
           "entity": "error_handling",
+          "key$": "BasicErrorHandlingFlow",
           "kind": "basic",
           "name": "BasicErrorHandlingFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -234,29 +221,52 @@
                     "ref": "error_handling_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicErrorHandlingFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "url": "http://ccdb.hemiola.com/"
+        },
+        "description": "This API is designed to help developers manage and respond to 404 errors on their websites. It provides insights into potential causes and offers solutions for correcting broken links and missing files to improve user experience.",
+        "servers": [
+          {
+            "description": "Production server",
+            "url": "http://ccdb.hemiola.com"
+          }
+        ],
+        "title": "404 Error Handler",
+        "version": "1.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "n404-error-handler"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "n404-error-handler"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -271,19 +281,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "n404-error-handler"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -298,138 +308,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "n404-error-handler"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "n404-error-handler"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "n404-error-handler"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "n404-error-handler"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "n404-error-handler"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "n404-error-handler"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "n404-error-handler"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "n404-error-handler"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "n404-error-handler"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "n404-error-handler",
+  "origin": "voxgig-sdk"
 }

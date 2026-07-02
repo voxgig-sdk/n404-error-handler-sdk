@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "http://ccdb.hemiola.com",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,57 +29,59 @@ def make_config():
       "error_handling": {
         "fields": [
           {
+            "active": True,
             "name": "caus",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "solution",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "timestamp",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "url",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 3,
           },
         ],
         "name": "error_handling",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "referrer",
                       "orig": "referrer",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "url",
                       "orig": "url",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -95,11 +100,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

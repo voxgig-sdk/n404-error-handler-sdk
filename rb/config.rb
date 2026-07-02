@@ -15,6 +15,9 @@ module N404ErrorHandlerConfig
       },
       "options" => {
         "base" => "http://ccdb.hemiola.com",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -26,57 +29,59 @@ module N404ErrorHandlerConfig
         "error_handling" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "caus",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "solution",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "timestamp",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "url",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 3,
             },
           ],
           "name" => "error_handling",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "referrer",
                         "orig" => "referrer",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "url",
                         "orig" => "url",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -95,11 +100,9 @@ module N404ErrorHandlerConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },

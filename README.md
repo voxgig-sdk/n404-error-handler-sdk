@@ -1,23 +1,8 @@
 # N404ErrorHandler SDK
 
-Chinese Character Web API serving Unihan data for the ~20,902 CJK Unified Ideographs (despite the misleading SDK title)
+404 Error Handler client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About 404 Error Handler
-
-Note on naming: this SDK is slugged `n404-error-handler` and titled "404 Error Handler", but the configured server `http://ccdb.hemiola.com/` is in fact the **Chinese Character Web API** (CCDB = Chinese Character Database), a small read-only REST-like service authored by the operator of [hemiola.com](http://hemiola.com/) and posted in 2011. The "404 Error Handler" / credit-card-database labels appear to be incorrect metadata on the upstream catalogue entry rather than a description of what the server actually returns.
-
-The API exposes character information drawn from the [Unihan Database](http://www.unicode.org/charts/unihan.html), restricted to the 20,902 CJK Unified Ideographs in the `U+4E00`–`U+9FFF` block. It is JSON-only, GET-based (POST is accepted as a synonym for GET; PUT and DELETE are not), and has CORS enabled for browser use.
-
-What you can do with the real endpoint:
-
-- List characters by Kangxi radical, e.g. `GET /characters/radicals/{n}` (the documented example is `/characters/radicals/85`).
-- Filter results by character set with a `filter` query parameter — supported names include `gb` (GB2312), `big5`, `big5a`, `big5b`, `sjis` (Shift JIS), `simplified`, and `simplifiable`, with `!` for negation.
-- Choose returned fields via `fields=`, e.g. `fields=kDefinition,kMandarin` for the English gloss and Pīnyīn reading.
-- Replace results with a count using the `count` parameter.
-
-Operational notes: the service is a small personal project running on a LAMP stack; it has no published auth, rate-limit, or SLA, and at the time of writing third-party monitors report the host as down. Treat it as a curiosity / learning aid rather than a dependable backend.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install n404-error-handler-sdk
 luarocks install n404-error-handler-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { N404ErrorHandlerSDK } from 'n404-error-handler'
 
-const client = new N404ErrorHandlerSDK({})
+const client = new N404ErrorHandlerSDK({
+  apikey: process.env.N404-ERROR-HANDLER_APIKEY,
+})
 
 // List all errorhandlings
 const errorhandlings = await client.ErrorHandling().list()
+console.log(errorhandlings.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **ErrorHandling** | Listed as the sole entity grouping in this SDK, but it does not correspond to anything visible on the live `ccdb.hemiola.com` service, which exposes Chinese-character lookups (e.g. `/characters/radicals/{n}`) rather than any error-handling resource. | `/404` |
+| **ErrorHandling** |  | `/404` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from n404errorhandler_sdk import N404ErrorHandlerSDK
 
-client = N404ErrorHandlerSDK({})
+client = N404ErrorHandlerSDK({
+    "apikey": os.environ.get("N404-ERROR-HANDLER_APIKEY"),
+})
 
 # List all errorhandlings
-errorhandlings, err = client.ErrorHandling(None).list(None, None)
+errorhandlings, err = client.ErrorHandling().list()
+print(errorhandlings)
 ```
 
 ### PHP
@@ -127,10 +118,13 @@ errorhandlings, err = client.ErrorHandling(None).list(None, None)
 <?php
 require_once 'n404errorhandler_sdk.php';
 
-$client = new N404ErrorHandlerSDK([]);
+$client = new N404ErrorHandlerSDK([
+    "apikey" => getenv("N404-ERROR-HANDLER_APIKEY"),
+]);
 
 // List all errorhandlings
-[$errorhandlings, $err] = $client->ErrorHandling(null)->list(null, null);
+[$errorhandlings, $err] = $client->ErrorHandling()->list();
+print_r($errorhandlings);
 ```
 
 ### Golang
@@ -138,10 +132,13 @@ $client = new N404ErrorHandlerSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/n404-error-handler-sdk/go"
 
-client := sdk.NewN404ErrorHandlerSDK(map[string]any{})
+client := sdk.NewN404ErrorHandlerSDK(map[string]any{
+    "apikey": os.Getenv("N404-ERROR-HANDLER_APIKEY"),
+})
 
 // List all errorhandlings
 errorhandlings, err := client.ErrorHandling(nil).List(nil, nil)
+fmt.Println(errorhandlings)
 ```
 
 ### Ruby
@@ -149,10 +146,13 @@ errorhandlings, err := client.ErrorHandling(nil).List(nil, nil)
 ```ruby
 require_relative "N404ErrorHandler_sdk"
 
-client = N404ErrorHandlerSDK.new({})
+client = N404ErrorHandlerSDK.new({
+  "apikey" => ENV["N404-ERROR-HANDLER_APIKEY"],
+})
 
 # List all errorhandlings
-errorhandlings, err = client.ErrorHandling(nil).list(nil, nil)
+errorhandlings, err = client.ErrorHandling().list
+puts errorhandlings
 ```
 
 ### Lua
@@ -160,10 +160,13 @@ errorhandlings, err = client.ErrorHandling(nil).list(nil, nil)
 ```lua
 local sdk = require("n404-error-handler_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("N404-ERROR-HANDLER_APIKEY"),
+})
 
 -- List all errorhandlings
-local errorhandlings, err = client:ErrorHandling(nil):list(nil, nil)
+local errorhandlings, err = client:ErrorHandling():list()
+print(errorhandlings)
 ```
 
 ## Unit testing in offline mode
@@ -182,25 +185,21 @@ const result = await client.ErrorHandling().load({ id: 'test01' })
 ### Python
 
 ```python
-client = N404ErrorHandlerSDK.test(None, None)
-result, err = client.ErrorHandling(None).load(
-    {"id": "test01"}, None
-)
+client = N404ErrorHandlerSDK.test()
+result, err = client.ErrorHandling().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = N404ErrorHandlerSDK::test(null, null);
-[$result, $err] = $client->ErrorHandling(null)->load(
-    ["id" => "test01"], null
-);
+$client = N404ErrorHandlerSDK::test();
+[$result, $err] = $client->ErrorHandling()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.ErrorHandling(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -209,19 +208,15 @@ result, err := client.ErrorHandling(nil).Load(
 ### Ruby
 
 ```ruby
-client = N404ErrorHandlerSDK.test(nil, nil)
-result, err = client.ErrorHandling(nil).load(
-  { "id" => "test01" }, nil
-)
+client = N404ErrorHandlerSDK.test
+result, err = client.ErrorHandling().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:ErrorHandling(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:ErrorHandling():load({ id = "test01" })
 ```
 
 ## How it works
@@ -325,14 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the 404 Error Handler
-
-- Upstream: [http://ccdb.hemiola.com/](http://ccdb.hemiola.com/)
-
-- The service itself (`ccdb.hemiola.com`) does not publish a licence on its landing page.
-- Data is sourced from the [Unihan Database](http://www.unicode.org/charts/unihan.html) provided by [The Unicode Consortium](http://www.unicode.org/); reuse of that data is governed by the Unicode terms.
-- The freepublicapis.com listing currently reports the service as unreachable (100% error rate at last check), so production use is not advisable.
 
 ---
 

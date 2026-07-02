@@ -119,6 +119,7 @@ func error_handlingBasicSetup(extra map[string]any) *entityTestSetup {
 		"N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID": idmap,
 		"N___ERRORHANDLER_TEST_LIVE":      "FALSE",
 		"N___ERRORHANDLER_TEST_EXPLAIN":   "FALSE",
+		"N___ERRORHANDLER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID"])
@@ -129,6 +130,7 @@ func error_handlingBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["N___ERRORHANDLER_APIKEY"],
 			},
 			extra,
 		})

@@ -16,29 +16,7 @@ main: {
       ]
       title: "404 Error Handler"
       version: "1.0.0"
-      tagline: "Chinese Character Web API serving Unihan data for the ~20,902 CJK Unified Ideographs (despite the misleading SDK title)"
-      homepage: "http://ccdb.hemiola.com/"
-      docs_url: "http://ccdb.hemiola.com/"
-      license_short: "Unspecified; underlying data is from the Unicode Consortium's Unihan Database"
-      license_md: `- The service itself (\`ccdb.hemiola.com\`) does not publish a licence on its landing page.
-- Data is sourced from the [Unihan Database](http://www.unicode.org/charts/unihan.html) provided by [The Unicode Consortium](http://www.unicode.org/); reuse of that data is governed by the Unicode terms.
-- The freepublicapis.com listing currently reports the service as unreachable (100% error rate at last check), so production use is not advisable.`
-      about_md: `Note on naming: this SDK is slugged \`n404-error-handler\` and titled "404 Error Handler", but the configured server \`http://ccdb.hemiola.com/\` is in fact the **Chinese Character Web API** (CCDB = Chinese Character Database), a small read-only REST-like service authored by the operator of [hemiola.com](http://hemiola.com/) and posted in 2011. The "404 Error Handler" / credit-card-database labels appear to be incorrect metadata on the upstream catalogue entry rather than a description of what the server actually returns.
-
-The API exposes character information drawn from the [Unihan Database](http://www.unicode.org/charts/unihan.html), restricted to the 20,902 CJK Unified Ideographs in the \`U+4E00\`–\`U+9FFF\` block. It is JSON-only, GET-based (POST is accepted as a synonym for GET; PUT and DELETE are not), and has CORS enabled for browser use.
-
-What you can do with the real endpoint:
-
-- List characters by Kangxi radical, e.g. \`GET /characters/radicals/{n}\` (the documented example is \`/characters/radicals/85\`).
-- Filter results by character set with a \`filter\` query parameter — supported names include \`gb\` (GB2312), \`big5\`, \`big5a\`, \`big5b\`, \`sjis\` (Shift JIS), \`simplified\`, and \`simplifiable\`, with \`!\` for negation.
-- Choose returned fields via \`fields=\`, e.g. \`fields=kDefinition,kMandarin\` for the English gloss and Pīnyīn reading.
-- Replace results with a count using the \`count\` parameter.
-
-Operational notes: the service is a small personal project running on a LAMP stack; it has no published auth, rate-limit, or SLA, and at the time of writing third-party monitors report the host as down. Treat it as a curiosity / learning aid rather than a dependable backend.`
-      entity_desc: {
-        error_handling: "Listed as the sole entity grouping in this SDK, but it does not correspond to anything visible on the live `ccdb.hemiola.com` service, which exposes Chinese-character lookups (e.g. `/characters/radicals/{n}`) rather than any error-handling resource."
-      }
-      auth: false
     }
   }
 }
+
