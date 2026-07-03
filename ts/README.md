@@ -10,7 +10,7 @@ The TypeScript SDK for the N404ErrorHandler API — a type-safe, entity-oriented
 
 ## Install
 ```bash
-npm install n404-error-handler
+npm install @voxgig-sdk/n404-error-handler
 ```
 ## Tutorial: your first API call
 

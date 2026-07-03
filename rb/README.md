@@ -10,13 +10,13 @@ The Ruby SDK for the N404ErrorHandler API — an entity-oriented client using id
 
 ## Install
 ```bash
-gem install n404-error-handler-sdk
+gem install voxgig-sdk-n404-error-handler
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "n404-error-handler-sdk"
+gem "voxgig-sdk-n404-error-handler"
 ```
 
 Then run:

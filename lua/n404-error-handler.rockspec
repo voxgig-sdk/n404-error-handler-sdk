@@ -8,12 +8,14 @@ source = {
   dir = "n404-error-handler-sdk/lua"
 }
 description = {
-  summary = "N404ErrorHandler SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the 404 Error Handler public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/n404-error-handler-sdk",
+  issues_url = "https://github.com/voxgig-sdk/n404-error-handler-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "n404-error-handler" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

@@ -10,7 +10,7 @@ The PHP SDK for the N404ErrorHandler API — an entity-oriented client using PHP
 
 ## Install
 ```bash
-composer require voxgig/n404-error-handler-sdk
+composer require voxgig-sdk/n404-error-handler
 ```
 
 

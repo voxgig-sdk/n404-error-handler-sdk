@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/n404-error-handler",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the 404 Error Handler public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "n404-error-handler"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/n404-error-handler-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/n404-error-handler-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/n404-error-handler-sdk/issues"
+  },
   "main": "dist/N404ErrorHandlerSDK.js",
   "type": "commonjs",
   "types": "dist/N404ErrorHandlerSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "N404ErrorHandler",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

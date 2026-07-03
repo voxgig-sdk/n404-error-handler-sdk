@@ -10,7 +10,7 @@ The Python SDK for the N404ErrorHandler API — an entity-oriented client follow
 
 ## Install
 ```bash
-pip install n404-error-handler-sdk
+pip install voxgig-sdk-n404-error-handler
 ```
 
 Or install from source:
