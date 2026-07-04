@@ -109,7 +109,7 @@ Alias for `N404ErrorHandlerSDK.test()`.
 ## ErrorHandlingEntity
 
 ```ts
-const error_handling = client.error_handling
+const error_handling = client.ErrorHandling()
 ```
 
 ### Fields
@@ -128,7 +128,7 @@ const error_handling = client.error_handling
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.error_handling.list()
+const results = await client.ErrorHandling().list()
 ```
 
 ### Common Methods

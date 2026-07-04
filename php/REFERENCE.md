@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ErrorHandlingEntity
 
 ```php
-$error_handling = $client->error_handling();
+$error_handling = $client->ErrorHandling();
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ $error_handling = $client->error_handling();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->error_handling()->list([]);
+$results = $client->ErrorHandling()->list([]);
 ```
 
 ### Common Methods

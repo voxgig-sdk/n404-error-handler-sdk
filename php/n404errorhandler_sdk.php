@@ -233,10 +233,10 @@ class N404ErrorHandlerSDK
 
     private $_error_handling = null;
 
-    // Idiomatic facade: $client->error_handling()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ErrorHandling() (PHP method
-    // names are case-insensitive).
-    public function error_handling($data = null)
+    // Canonical facade: $client->ErrorHandling()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->error_handling()
+    // resolves here too.
+    public function ErrorHandling($data = null)
     {
         require_once __DIR__ . '/entity/error_handling_entity.php';
         if ($data === null) {

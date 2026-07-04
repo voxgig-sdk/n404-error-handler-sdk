@@ -26,9 +26,11 @@ import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler'
 
 const client = new N404ErrorHandlerSDK()
 
-// List all errorhandlings
-const errorhandlings = await client.errorhandling.list()
-console.log(errorhandlings.data)
+// List all errorhandlings (returns ErrorHandling[])
+const errorhandlings = await client.ErrorHandling().list()
+for (const errorhandling of errorhandlings) {
+  console.log(errorhandling)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from n404errorhandler_sdk import N404ErrorHandlerSDK
 
 client = N404ErrorHandlerSDK()
 
-# List all errorhandlings
-errorhandlings = client.errorhandling.list()
-print(errorhandlings)
+# List all errorhandlings (returns a list, raises on error)
+errorhandlings = client.ErrorHandling().list({})
+for errorhandling in errorhandlings:
+    print(errorhandling)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'n404errorhandler_sdk.php';
 
 $client = new N404ErrorHandlerSDK();
 
-// List all errorhandlings (throws on error)
-$errorhandlings = $client->errorhandling()->list();
+// List all errorhandlings (returns an array; throws on error)
+$errorhandlings = $client->ErrorHandling()->list();
 print_r($errorhandlings);
 ```
 
@@ -120,8 +123,8 @@ require_relative "N404ErrorHandler_sdk"
 
 client = N404ErrorHandlerSDK.new
 
-# List all errorhandlings
-errorhandlings = client.errorhandling.list
+# List all errorhandlings (returns an Array; raises on error)
+errorhandlings = client.ErrorHandling.list
 puts errorhandlings
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("n404-error-handler_sdk")
 local client = sdk.new()
 
 -- List all errorhandlings
-local errorhandlings, err = client:errorhandling():list()
+local errorhandlings, err = client:ErrorHandling():list()
 print(errorhandlings)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = N404ErrorHandlerSDK.test()
-const result = await client.errorhandling.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const errorhandling = await client.ErrorHandling().load({ id: 'test01' })
+// errorhandling is a bare ErrorHandling populated with mock data
+console.log(errorhandling)
 ```
 
 ### Python
 
 ```python
 client = N404ErrorHandlerSDK.test()
-result = client.errorhandling.load({"id": "test01"})
+errorhandling = client.ErrorHandling().load({"id": "test01"})
+print(errorhandling)
 ```
 
 ### PHP
 
 ```php
-$client = N404ErrorHandlerSDK::test();
-$result = $client->errorhandling()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = N404ErrorHandlerSDK::test([
+    "entity" => ["errorhandling" => ["test01" => ["id" => "test01"]]],
+]);
+$errorhandling = $client->ErrorHandling()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.ErrorHandling(nil).Load(
 ### Ruby
 
 ```ruby
-client = N404ErrorHandlerSDK.test
-result = client.errorhandling.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = N404ErrorHandlerSDK.test({
+  "entity" => { "errorhandling" => { "test01" => { "id" => "test01" } } },
+})
+errorhandling = client.ErrorHandling.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:errorhandling():load({ id = "test01" })
+local result, err = client:ErrorHandling():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

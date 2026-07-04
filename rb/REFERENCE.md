@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## ErrorHandlingEntity
 
 ```ruby
-error_handling = client.error_handling
+error_handling = client.ErrorHandling
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ error_handling = client.error_handling
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.error_handling.list(nil)
+results = client.ErrorHandling.list(nil)
 ```
 
 ### Common Methods

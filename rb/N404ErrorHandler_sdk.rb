@@ -208,13 +208,7 @@ class N404ErrorHandlerSDK
   end
 
 
-  # Idiomatic facade: client.error_handling.list / client.error_handling.load({ "id" => ... })
-  def error_handling
-    require_relative 'entity/error_handling_entity'
-    @error_handling ||= ErrorHandlingEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.error_handling instead.
+  # Canonical facade: client.ErrorHandling.list / client.ErrorHandling.load({ "id" => ... })
   def ErrorHandling(data = nil)
     require_relative 'entity/error_handling_entity'
     ErrorHandlingEntity.new(self, data)

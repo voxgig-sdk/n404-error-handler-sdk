@@ -31,14 +31,16 @@ from n404errorhandler_sdk import N404ErrorHandlerSDK
 client = N404ErrorHandlerSDK()
 ```
 
-### 2. List errorhandlings
+### 2. List errorhandling records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.errorhandling.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    errorhandlings = client.ErrorHandling().list({})
+    for errorhandling in errorhandlings:
+        print(errorhandling)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = N404ErrorHandlerSDK.test()
 
-result = client.errorhandling.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+errorhandling = client.ErrorHandling().load({"id": "test01"})
+# errorhandling contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `ErrorHandling` | `(data) -> ErrorHandlingEntity` | Create a ErrorHandling entity instance. |
+| `ErrorHandling` | `(data) -> ErrorHandlingEntity` | Create an ErrorHandling entity instance. |
 
 ### Entity interface
 
@@ -223,7 +226,7 @@ API path: `/404`
 
 ### ErrorHandling
 
-Create an instance: `const error_handling = client.error_handling`
+Create an instance: `error_handling = client.ErrorHandling()`
 
 #### Operations
 
@@ -242,8 +245,8 @@ Create an instance: `const error_handling = client.error_handling`
 
 #### Example: List
 
-```ts
-const error_handlings = await client.error_handling.list()
+```python
+error_handlings = client.ErrorHandling().list({})
 ```
 
 
@@ -317,7 +320,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-errorhandling = client.errorhandling
+errorhandling = client.ErrorHandling()
 errorhandling.load({"id": "example_id"})
 
 # errorhandling.data_get() now returns the loaded errorhandling data

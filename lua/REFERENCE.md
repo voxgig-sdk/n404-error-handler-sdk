@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## ErrorHandlingEntity
 
 ```lua
-local error_handling = client:error_handling(nil)
+local error_handling = client:ErrorHandling(nil)
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ local error_handling = client:error_handling(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:error_handling():list()
+local results, err = client:ErrorHandling():list()
 ```
 
 ### Common Methods

@@ -29,18 +29,16 @@ require_once 'n404errorhandler_sdk.php';
 $client = new N404ErrorHandlerSDK();
 ```
 
-### 2. List errorhandlings
+### 2. List errorhandling records
 
 ```php
 try {
-    $result = $client->errorhandling()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of ErrorHandling records — iterate directly.
+    $errorhandlings = $client->ErrorHandling()->list();
+    foreach ($errorhandlings as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = N404ErrorHandlerSDK::test();
+$client = N404ErrorHandlerSDK::test([
+    "entity" => ["errorhandling" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->errorhandling()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$errorhandling = $client->ErrorHandling()->load(["id" => "test01"]);
+print_r($errorhandling);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `ErrorHandling` | `($data): ErrorHandlingEntity` | Create a ErrorHandling entity instance. |
+| `ErrorHandling` | `($data): ErrorHandlingEntity` | Create an ErrorHandling entity instance. |
 
 ### Entity interface
 
@@ -231,7 +233,7 @@ API path: `/404`
 
 ### ErrorHandling
 
-Create an instance: `const error_handling = client.error_handling`
+Create an instance: `$error_handling = $client->ErrorHandling();`
 
 #### Operations
 
@@ -250,8 +252,9 @@ Create an instance: `const error_handling = client.error_handling`
 
 #### Example: List
 
-```ts
-const error_handlings = await client.error_handling.list()
+```php
+// list() returns an array of ErrorHandling records (throws on error).
+$error_handlings = $client->ErrorHandling()->list();
 ```
 
 
@@ -326,7 +329,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$errorhandling = $client->errorhandling();
+$errorhandling = $client->ErrorHandling();
 $errorhandling->load(["id" => "example_id"]);
 
 // $errorhandling->dataGet() now returns the loaded errorhandling data

@@ -220,25 +220,15 @@ class N404ErrorHandlerSDK:
         }
 
 
-    @property
-    def error_handling(self):
-        """Idiomatic facade: client.error_handling.list() / client.error_handling.load({"id": ...})."""
-        from entity.error_handling_entity import ErrorHandlingEntity
-        cached = getattr(self, "_error_handling", None)
-        if cached is None:
-            cached = ErrorHandlingEntity(self, None)
-            self._error_handling = cached
-        return cached
-
-    def ErrorHandling(self, data=None):
-        # Deprecated: use client.error_handling instead.
+    def ErrorHandling(self, data=None) -> "ErrorHandlingEntity":
+        """Entity factory: client.ErrorHandling().list({}) / client.ErrorHandling().load({"id": ...})."""
         from entity.error_handling_entity import ErrorHandlingEntity
         return ErrorHandlingEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "N404ErrorHandlerSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class N404ErrorHandlerSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.error_handling_entity import ErrorHandlingEntity

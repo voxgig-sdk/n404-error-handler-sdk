@@ -28,16 +28,14 @@ require_relative "N404ErrorHandler_sdk"
 client = N404ErrorHandlerSDK.new
 ```
 
-### 2. List errorhandlings
+### 2. List errorhandling records
 
 ```ruby
 begin
-  result = client.errorhandling.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of ErrorHandling records — iterate directly.
+  errorhandlings = client.ErrorHandling.list
+  errorhandlings.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = N404ErrorHandlerSDK.test
+client = N404ErrorHandlerSDK.test({
+  "entity" => { "errorhandling" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.errorhandling.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+errorhandling = client.ErrorHandling.load({ "id" => "test01" })
+puts errorhandling
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `ErrorHandling` | `(data) -> ErrorHandlingEntity` | Create a ErrorHandling entity instance. |
+| `ErrorHandling` | `(data) -> ErrorHandlingEntity` | Create an ErrorHandling entity instance. |
 
 ### Entity interface
 
@@ -226,7 +228,7 @@ API path: `/404`
 
 ### ErrorHandling
 
-Create an instance: `const error_handling = client.error_handling`
+Create an instance: `error_handling = client.ErrorHandling`
 
 #### Operations
 
@@ -245,8 +247,9 @@ Create an instance: `const error_handling = client.error_handling`
 
 #### Example: List
 
-```ts
-const error_handlings = await client.error_handling.list()
+```ruby
+# list returns an Array of ErrorHandling records (raises on error).
+error_handlings = client.ErrorHandling.list
 ```
 
 
@@ -321,7 +324,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-errorhandling = client.errorhandling
+errorhandling = client.ErrorHandling
 errorhandling.load({ "id" => "example_id" })
 
 # errorhandling.data_get now returns the loaded errorhandling data

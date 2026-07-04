@@ -31,17 +31,17 @@ local sdk = require("n404-error-handler_sdk")
 local client = sdk.new()
 ```
 
-### 2. List errorhandlings
+### 2. List errorhandling records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:errorhandling():list()
+local errorhandlings, err = client:ErrorHandling():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(errorhandlings) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:errorhandling():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:ErrorHandling():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `ErrorHandling` | `(data) -> ErrorHandlingEntity` | Create a ErrorHandling entity instance. |
+| `ErrorHandling` | `(data) -> ErrorHandlingEntity` | Create an ErrorHandling entity instance. |
 
 ### Entity interface
 
@@ -189,17 +189,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local error_handling, err = client:ErrorHandling():load({ id = "example_id" })
+    if err then error(err) end
+    -- error_handling is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -223,7 +228,7 @@ API path: `/404`
 
 ### ErrorHandling
 
-Create an instance: `const error_handling = client.error_handling`
+Create an instance: `local error_handling = client:ErrorHandling(nil)`
 
 #### Operations
 
@@ -242,8 +247,8 @@ Create an instance: `const error_handling = client.error_handling`
 
 #### Example: List
 
-```ts
-const error_handlings = await client.error_handling.list()
+```lua
+local error_handlings, err = client:ErrorHandling():list()
 ```
 
 
@@ -318,7 +323,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local errorhandling = client:errorhandling()
+local errorhandling = client:ErrorHandling()
 errorhandling:load({ id = "example_id" })
 
 -- errorhandling:data_get() now returns the loaded errorhandling data

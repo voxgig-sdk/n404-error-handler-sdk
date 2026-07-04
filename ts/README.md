@@ -28,15 +28,15 @@ import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler'
 const client = new N404ErrorHandlerSDK()
 ```
 
-### 2. List errorhandlings
+### 2. List errorhandling records
+
+`list()` resolves to an array of ErrorHandling objects — iterate it directly:
 
 ```ts
-const result = await client.errorhandling.list()
+const errorhandlings = await client.ErrorHandling().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const errorhandling of errorhandlings) {
+  console.log(errorhandling)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = N404ErrorHandlerSDK.test()
 
-const result = await client.errorhandling.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const errorhandling = await client.ErrorHandling().load({ id: 'test01' })
+// errorhandling is a bare entity populated with mock response data
+console.log(errorhandling)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.errorhandling
+const entity = client.ErrorHandling()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -177,7 +180,7 @@ new N404ErrorHandlerSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `ErrorHandling(data?)` | `ErrorHandlingEntity` | Create a ErrorHandling entity instance. |
+| `ErrorHandling(data?)` | `ErrorHandlingEntity` | Create an ErrorHandling entity instance. |
 | `tester(testopts?, sdkopts?)` | `N404ErrorHandlerSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -194,29 +197,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): N404ErrorHandlerSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -268,7 +272,7 @@ API path: `/404`
 
 ### ErrorHandling
 
-Create an instance: `const error_handling = client.error_handling`
+Create an instance: `const error_handling = client.ErrorHandling()`
 
 #### Operations
 
@@ -288,7 +292,7 @@ Create an instance: `const error_handling = client.error_handling`
 #### Example: List
 
 ```ts
-const error_handlings = await client.error_handling.list()
+const error_handlings = await client.ErrorHandling().list()
 ```
 
 
@@ -359,7 +363,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const errorhandling = client.errorhandling
+const errorhandling = client.ErrorHandling()
 await errorhandling.load({ id: "example_id" })
 
 // errorhandling.data() now returns the loaded errorhandling data

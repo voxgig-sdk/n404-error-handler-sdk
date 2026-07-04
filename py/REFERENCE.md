@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ErrorHandlingEntity
 
 ```python
-error_handling = client.error_handling
+error_handling = client.ErrorHandling()
 ```
 
 ### Fields
@@ -99,7 +99,9 @@ error_handling = client.error_handling
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.error_handling.list({})
+results = client.ErrorHandling().list({})
+for error_handling in results:
+    print(error_handling)
 ```
 
 ### Common Methods
