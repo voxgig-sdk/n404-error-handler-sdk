@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 class N404ErrorHandlerDone
 {
-    public static function call(N404ErrorHandlerContext $ctx): array
+    public static function call(N404ErrorHandlerContext $ctx): mixed
     {
         if ($ctx->ctrl->explain) {
             $ctx->ctrl->explain = ($ctx->utility->clean)($ctx, $ctx->ctrl->explain);
@@ -19,7 +19,7 @@ class N404ErrorHandlerDone
             if (is_object($resdata)) {
                 $resdata = (array)$resdata;
             }
-            return [$resdata, null];
+            return $resdata;
         }
         return ($ctx->utility->make_error)($ctx, null);
     }

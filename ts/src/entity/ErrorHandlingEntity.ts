@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  ErrorHandling,
+  ErrorHandlingListMatch,
+} from '../N404ErrorHandlerTypes'
 
 // TODO: needs Entity superclass
-class ErrorHandlingEntity extends N404ErrorHandlerEntityBase {
+class ErrorHandlingEntity extends N404ErrorHandlerEntityBase<ErrorHandling> {
 
   constructor(client: N404ErrorHandlerSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class ErrorHandlingEntity extends N404ErrorHandlerEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ErrorHandlingListMatch, ctrl?: Control): Promise<ErrorHandling[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class ErrorHandlingEntity extends N404ErrorHandlerEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ErrorHandling[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

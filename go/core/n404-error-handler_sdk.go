@@ -245,6 +245,9 @@ func (sdk *N404ErrorHandlerSDK) Direct(fetchargs map[string]any) (map[string]any
 }
 
 
+// ErrorHandling returns a ErrorHandling entity bound to this client.
+// Idiomatic usage: client.ErrorHandling(nil).List(nil, nil) or
+// client.ErrorHandling(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *N404ErrorHandlerSDK) ErrorHandling(data map[string]any) N404ErrorHandlerEntity {
 	return NewErrorHandlingEntityFunc(sdk, data)
 }

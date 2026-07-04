@@ -2,6 +2,8 @@
 
 import { ErrorHandlingEntity } from './entity/ErrorHandlingEntity'
 
+export type * from './N404ErrorHandlerTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class N404ErrorHandlerSDK {
 
 
 
+  _error_handling?: ErrorHandlingEntity
+
+  // Idiomatic facade: `client.error_handling.list()` / `client.error_handling.load({ id })`.
+  get error_handling(): ErrorHandlingEntity {
+    return (this._error_handling ??= new ErrorHandlingEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.error_handling` instead. */
   ErrorHandling(data?: any) {
     const self = this
     return new ErrorHandlingEntity(self,data)

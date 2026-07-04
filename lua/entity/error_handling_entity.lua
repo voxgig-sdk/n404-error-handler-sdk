@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ErrorHandlingListMatch
+---@param ctrl? table
+---@return ErrorHandling[]
+---@return string? err
 function ErrorHandlingEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

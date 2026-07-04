@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'N____ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID': idmap,
     'N____ERROR_HANDLER_TEST_LIVE': 'FALSE',
     'N____ERROR_HANDLER_TEST_EXPLAIN': 'FALSE',
-    'N____ERROR_HANDLER_APIKEY': 'NONE',
   })
 
   idmap = env['N____ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new N404ErrorHandlerSDK(merge([
       {
-        apikey: env.N____ERROR_HANDLER_APIKEY,
       },
       extra
     ]))

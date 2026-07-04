@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## ErrorHandlingEntity
 
 ```lua
-local error_handling = client:ErrorHandling(nil)
+local error_handling = client:error_handling(nil)
 ```
 
 ### Fields
@@ -103,7 +102,7 @@ local error_handling = client:ErrorHandling(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ErrorHandling():list()
+local results, err = client:error_handling():list()
 ```
 
 ### Common Methods

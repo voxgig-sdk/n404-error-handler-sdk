@@ -45,6 +45,7 @@ class ErrorHandlingEntity
     end
   end
 
+  # @return [ErrorHandling, Hash] the current ErrorHandling data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ErrorHandlingEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ErrorHandling fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ErrorHandlingEntity
   
 
   
+  # List ErrorHandling items matching the given filter.
+  #
+  # @param reqmatch [ErrorHandlingListMatch, Hash, nil] match filter (any subset of ErrorHandling fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<ErrorHandling>, Array] the matching ErrorHandling items; raises N404ErrorHandlerError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

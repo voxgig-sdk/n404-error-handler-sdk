@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:error_handling():list() / client:error_handling():load({ id = ... })
+function N404ErrorHandlerSDK:error_handling(data)
+  local EntityMod = require("entity.error_handling_entity")
+  if data == nil then
+    if self._error_handling == nil then
+      self._error_handling = EntityMod.new(self, nil)
+    end
+    return self._error_handling
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:error_handling() instead.
 function N404ErrorHandlerSDK:ErrorHandling(data)
   local EntityMod = require("entity.error_handling_entity")
   return EntityMod.new(self, data)

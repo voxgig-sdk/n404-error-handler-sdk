@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "http://ccdb.hemiola.com",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },

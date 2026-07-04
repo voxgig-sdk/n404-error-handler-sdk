@@ -43,8 +43,7 @@ class ErrorHandlingEntityTest < Minitest::Test
     error_handling_ref01_ent = client.ErrorHandling(nil)
     error_handling_ref01_match = {}
 
-    error_handling_ref01_list_result, err = error_handling_ref01_ent.list(error_handling_ref01_match, nil)
-    assert_nil err
+    error_handling_ref01_list_result = error_handling_ref01_ent.list(error_handling_ref01_match, nil)
     assert error_handling_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def error_handling_basic_setup(extra)
     "N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID" => idmap,
     "N___ERRORHANDLER_TEST_LIVE" => "FALSE",
     "N___ERRORHANDLER_TEST_EXPLAIN" => "FALSE",
-    "N___ERRORHANDLER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def error_handling_basic_setup(extra)
   if env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["N___ERRORHANDLER_APIKEY"],
       },
       extra || {},
     ])
