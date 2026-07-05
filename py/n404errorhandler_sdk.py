@@ -221,7 +221,7 @@ class N404ErrorHandlerSDK:
 
 
     def ErrorHandling(self, data=None) -> "ErrorHandlingEntity":
-        """Entity factory: client.ErrorHandling().list({}) / client.ErrorHandling().load({"id": ...})."""
+        """Entity factory: client.ErrorHandling().list() / client.ErrorHandling().load({"id": ...})."""
         from entity.error_handling_entity import ErrorHandlingEntity
         return ErrorHandlingEntity(self, data)
 

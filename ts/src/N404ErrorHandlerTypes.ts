@@ -12,5 +12,10 @@ export interface ErrorHandling {
   url?: string
 }
 
-export type ErrorHandlingListMatch = Partial<ErrorHandling>
+export interface ErrorHandlingListMatch {
+  caus?: any[]
+  solution?: any[]
+  timestamp?: string
+  url?: string
+}
 

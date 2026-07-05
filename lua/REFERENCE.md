@@ -90,10 +90,10 @@ local error_handling = client:ErrorHandling(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | ``$ARRAY`` | No |  |
-| `solution` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `caus` | `table` | No |  |
+| `solution` | `table` | No |  |
+| `timestamp` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

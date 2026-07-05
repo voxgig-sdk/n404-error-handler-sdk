@@ -8,7 +8,7 @@ Complete API reference for the N404ErrorHandler Python SDK.
 ### Constructor
 
 ```python
-from n404-error-handler_sdk import N404ErrorHandlerSDK
+from n404errorhandler_sdk import N404ErrorHandlerSDK
 
 client = N404ErrorHandlerSDK(options)
 ```
@@ -87,19 +87,19 @@ error_handling = client.ErrorHandling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | ``$ARRAY`` | No |  |
-| `solution` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `caus` | `list` | No |  |
+| `solution` | `list` | No |  |
+| `timestamp` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ErrorHandling().list({})
+results = client.ErrorHandling().list()
 for error_handling in results:
     print(error_handling)
 ```

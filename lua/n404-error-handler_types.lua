@@ -13,6 +13,10 @@
 ---@field url? string
 
 ---@class ErrorHandlingListMatch
+---@field caus? table
+---@field solution? table
+---@field timestamp? string
+---@field url? string
 
 local M = {}
 

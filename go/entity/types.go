@@ -16,8 +16,7 @@ type ErrorHandling struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// ErrorHandlingListMatch mirrors the error_handling fields as an all-optional match
-// filter (Go analog of Partial<ErrorHandling>).
+// ErrorHandlingListMatch is the typed request payload for ErrorHandling.ListTyped.
 type ErrorHandlingListMatch struct {
 	Caus *[]any `json:"caus,omitempty"`
 	Solution *[]any `json:"solution,omitempty"`

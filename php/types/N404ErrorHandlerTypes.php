@@ -21,7 +21,7 @@ class ErrorHandling
     public ?string $url = null;
 }
 
-/** Match filter for ErrorHandling#list (any subset of ErrorHandling fields). */
+/** Request payload for ErrorHandling#list. */
 class ErrorHandlingListMatch
 {
     public ?array $caus = null;

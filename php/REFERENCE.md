@@ -8,7 +8,7 @@ Complete API reference for the N404ErrorHandler PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/n404-error-handler_sdk.php';
+require_once __DIR__ . '/n404errorhandler_sdk.php';
 
 $client = new N404ErrorHandlerSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = N404ErrorHandlerSDK::test();
 
 Create a new `ErrorHandlingEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): N404ErrorHandlerUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,36 +92,36 @@ $error_handling = $client->ErrorHandling();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | ``$ARRAY`` | No |  |
-| `solution` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `caus` | `array` | No |  |
+| `solution` | `array` | No |  |
+| `timestamp` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->ErrorHandling()->list([]);
+$results = $client->ErrorHandling()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -130,7 +130,7 @@ Set the entity match criteria.
 Create a new `ErrorHandlingEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -116,10 +116,10 @@ const error_handling = client.ErrorHandling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | ``$ARRAY`` | No |  |
-| `solution` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `caus` | `any[]` | No |  |
+| `solution` | `any[]` | No |  |
+| `timestamp` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

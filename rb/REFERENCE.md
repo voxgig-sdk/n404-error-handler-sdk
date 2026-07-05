@@ -8,7 +8,7 @@ Complete API reference for the N404ErrorHandler Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'n404-error-handler_sdk'
+require_relative 'N404ErrorHandler_sdk'
 
 client = N404ErrorHandlerSDK.new(options)
 ```
@@ -93,19 +93,19 @@ error_handling = client.ErrorHandling
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | ``$ARRAY`` | No |  |
-| `solution` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `caus` | `Array` | No |  |
+| `solution` | `Array` | No |  |
+| `timestamp` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.ErrorHandling.list(nil)
+results = client.ErrorHandling.list
 ```
 
 ### Common Methods

@@ -29,7 +29,7 @@ ErrorHandling = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ErrorHandling#list (any subset of ErrorHandling fields).
+# Request payload for ErrorHandling#list.
 #
 # @!attribute [rw] caus
 #   @return [Array, nil]
