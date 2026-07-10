@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -232,14 +229,17 @@
           "url": "http://ccdb.hemiola.com/"
         },
         "description": "This API is designed to help developers manage and respond to 404 errors on their websites. It provides insights into potential causes and offers solutions for correcting broken links and missing files to improve user experience.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "http://ccdb.hemiola.com"
           }
         ],
+        "summary": "This API is designed to help developers manage and respond to 404 errors on their websites.",
         "title": "404 Error Handler",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "http://ccdb.hemiola.com"
       },
       "option": {},
       "target": {
@@ -292,6 +292,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -342,6 +345,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

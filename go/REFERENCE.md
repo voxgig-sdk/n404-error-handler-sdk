@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## ErrorHandlingEntity
 
 ```go
-error_handling := client.ErrorHandling(nil)
+errorHandling := client.ErrorHandling(nil)
+fmt.Println(errorHandling.GetName()) // "error_handling"
 ```
 
 ### Fields
@@ -110,6 +111,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.ErrorHandling(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

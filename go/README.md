@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List errorhandling records — the value is the array of records itself.
-    errorhandlings, err := client.ErrorHandling(nil).List(nil, nil)
+    // List errorHandling records — the value is the array of records itself.
+    errorHandlings, err := client.ErrorHandling(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range errorhandlings.([]any) {
+    for _, item := range errorHandlings.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-errorhandling, err := client.ErrorHandling(nil).List(
+errorHandling, err := client.ErrorHandling(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(errorhandling) // the returned mock data
+fmt.Println(errorHandling) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -247,9 +247,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    errorhandling, err := client.ErrorHandling(nil).List(map[string]any{/* fields */}, nil)
+    errorHandling, err := client.ErrorHandling(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // errorhandling is the returned record
+    // errorHandling is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -276,7 +276,7 @@ API path: `/404`
 
 ### ErrorHandling
 
-Create an instance: `error_handling := client.ErrorHandling(nil)`
+Create an instance: `errorHandling := client.ErrorHandling(nil)`
 
 #### Operations
 
@@ -296,11 +296,11 @@ Create an instance: `error_handling := client.ErrorHandling(nil)`
 #### Example: List
 
 ```go
-error_handlings, err := client.ErrorHandling(nil).List(nil, nil)
+errorHandlings, err := client.ErrorHandling(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(error_handlings) // the array of records
+fmt.Println(errorHandlings) // the array of records
 ```
 
 

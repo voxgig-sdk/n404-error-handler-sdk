@@ -15,9 +15,9 @@ main: {
           url: "http://ccdb.hemiola.com"
         }
       ]
+      summary: "This API is designed to help developers manage and respond to 404 errors on their websites."
       title: "404 Error Handler"
       version: "1.0.0"
+      website: "http://ccdb.hemiola.com"
     }
   }
-}
-
