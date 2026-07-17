@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- N404ErrorHandler SDK configuration
 
 local function make_config()
   return {

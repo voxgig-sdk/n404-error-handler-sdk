@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- N404ErrorHandler SDK exists test
 
 local sdk = require("n404-error-handler_sdk")
 
