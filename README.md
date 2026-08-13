@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = N404ErrorHandlerSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = N404ErrorHandlerSDK.test({
+  entity: {
+    error_handling: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const errorhandlings = await client.ErrorHandling().list()
-// errorhandlings is an array of bare ErrorHandling records populated with mock data
+// errorhandlings is an array of ErrorHandling entities, populated with mock data
+// — call errorhandlings[0].data() for the record itself
 console.log(errorhandlings)
 ```
 
@@ -110,7 +119,7 @@ import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler'
 
 const client = new N404ErrorHandlerSDK()
 
-// List all errorhandlings (returns ErrorHandling[])
+// List all errorhandlings (returns ErrorHandlingEntity[] — .data() for the record)
 const errorhandlings = await client.ErrorHandling().list()
 for (const errorhandling of errorhandlings) {
   console.log(errorhandling)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [http://ccdb.hemiola.com/](http://ccdb.hemiola.com/)
 

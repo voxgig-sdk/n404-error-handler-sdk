@@ -43,8 +43,8 @@ class N404ErrorHandlerTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('N404ERRORHANDLER_TEST_LIVE');
-        $override = self::getenv('N404ERRORHANDLER_TEST_OVERRIDE');
+        $live = self::getenv('N404_ERROR_HANDLER_TEST_LIVE');
+        $override = self::getenv('N404_ERROR_HANDLER_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class N404ErrorHandlerTestRunner
             }
         }
 
-        $explain = self::getenv('N404ERRORHANDLER_TEST_EXPLAIN');
+        $explain = self::getenv('N404_ERROR_HANDLER_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['N404ERRORHANDLER_TEST_EXPLAIN'] = $explain;
+            $m['N404_ERROR_HANDLER_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

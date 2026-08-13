@@ -92,8 +92,8 @@ $error_handling = $client->ErrorHandling();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | `array` | No |  |
-| `solution` | `array` | No |  |
+| `causes` | `array` | No |  |
+| `solutions` | `array` | No |  |
 | `timestamp` | `string` | No |  |
 | `url` | `string` | No |  |
 

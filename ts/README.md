@@ -35,7 +35,9 @@ const client = new N404ErrorHandlerSDK()
 
 ### 2. List errorhandling records
 
-`list()` resolves to an array of ErrorHandling objects — iterate it directly:
+`list()` resolves to an array of ErrorHandling ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const errorhandlings = await client.ErrorHandling().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = N404ErrorHandlerSDK.test()
 
 const errorhandling = await client.ErrorHandling().list()
-// errorhandling is a bare entity populated with mock response data
+// errorhandling is the entity, populated with mock response data
+// — call errorhandling.data() for the record itself
 console.log(errorhandling)
 ```
 
@@ -284,8 +287,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `caus` |  |
-| `solution` |  |
+| `causes` |  |
+| `solutions` |  |
 | `timestamp` |  |
 | `url` |  |
 
@@ -312,8 +315,8 @@ Create an instance: `const error_handling = client.ErrorHandling()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caus` | `any[]` |  |
-| `solution` | `any[]` |  |
+| `causes` | `any[]` |  |
+| `solutions` | `any[]` |  |
 | `timestamp` | `string` |  |
 | `url` | `string` |  |
 

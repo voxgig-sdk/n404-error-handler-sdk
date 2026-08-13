@@ -23,8 +23,8 @@ module N404ErrorHandlerTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("N404ERRORHANDLER_TEST_LIVE")
-    override = getenv("N404ERRORHANDLER_TEST_OVERRIDE")
+    live = getenv("N404_ERROR_HANDLER_TEST_LIVE")
+    override = getenv("N404_ERROR_HANDLER_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module N404ErrorHandlerTestRunner
       end
     end
 
-    explain = getenv("N404ERRORHANDLER_TEST_EXPLAIN")
-    m["N404ERRORHANDLER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("N404_ERROR_HANDLER_TEST_EXPLAIN")
+    m["N404_ERROR_HANDLER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

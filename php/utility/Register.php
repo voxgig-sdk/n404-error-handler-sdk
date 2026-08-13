@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ N404ErrorHandlerUtility::setRegistrar(function (N404ErrorHandlerUtility $u): voi
     $u->prepare_params = [N404ErrorHandlerPrepareParams::class, 'call'];
     $u->prepare_path = [N404ErrorHandlerPreparePath::class, 'call'];
     $u->prepare_query = [N404ErrorHandlerPrepareQuery::class, 'call'];
+    $u->graphql_body = [N404ErrorHandlerGraphql::class, 'body'];
+    $u->graphql_errors = [N404ErrorHandlerGraphql::class, 'errors'];
     $u->result_basic = [N404ErrorHandlerResultBasic::class, 'call'];
     $u->result_body = [N404ErrorHandlerResultBody::class, 'call'];
     $u->result_headers = [N404ErrorHandlerResultHeaders::class, 'call'];

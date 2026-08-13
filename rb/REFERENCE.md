@@ -93,8 +93,8 @@ error_handling = client.ErrorHandling
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | `Array` | No |  |
-| `solution` | `Array` | No |  |
+| `causes` | `Array` | No |  |
+| `solutions` | `Array` | No |  |
 | `timestamp` | `String` | No |  |
 | `url` | `String` | No |  |
 

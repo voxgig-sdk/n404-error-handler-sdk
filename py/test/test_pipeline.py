@@ -16,11 +16,11 @@
 import pytest
 
 from n404errorhandler_sdk import N404ErrorHandlerSDK
-from core.error import N404ErrorHandlerError
-from core.result import N404ErrorHandlerResult
-from core.response import N404ErrorHandlerResponse
-from core.spec import N404ErrorHandlerSpec
-from feature.base_feature import N404ErrorHandlerBaseFeature
+from n404errorhandler_sdk.core.error import N404ErrorHandlerError
+from n404errorhandler_sdk.core.result import N404ErrorHandlerResult
+from n404errorhandler_sdk.core.response import N404ErrorHandlerResponse
+from n404errorhandler_sdk.core.spec import N404ErrorHandlerSpec
+from n404errorhandler_sdk.feature.base_feature import N404ErrorHandlerBaseFeature
 
 
 def _client():

@@ -26,8 +26,8 @@ import {
 describe('ErrorHandlingEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when N404ERRORHANDLER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('N404ERRORHANDLER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when N404_ERROR_HANDLER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('N404_ERROR_HANDLER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = N404ErrorHandlerSDK.test()
@@ -38,7 +38,7 @@ describe('ErrorHandlingEntity', async () => {
 
   test('basic', async (t) => {
 
-    const live = 'TRUE' === process.env.N____ERROR_HANDLER_TEST_LIVE
+    const live = 'TRUE' === process.env.N404_ERROR_HANDLER_TEST_LIVE
     for (const op of ['list']) {
       if (maybeSkipControl(t, 'entityOp', 'error_handling.' + op, live)) return
     }
@@ -48,7 +48,7 @@ describe('ErrorHandlingEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set N____ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set N404_ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -63,7 +63,7 @@ describe('ErrorHandlingEntity', async () => {
     const error_handling_ref01_ent = client.ErrorHandling()
     const error_handling_ref01_match: any = {}
 
-    const error_handling_ref01_list = await error_handling_ref01_ent.list(error_handling_ref01_match)
+    const error_handling_ref01_list = (await error_handling_ref01_ent.list(error_handling_ref01_match)).map((e: any) => e.data())
 
 
   })
@@ -106,18 +106,18 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['N____ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID']
+  const idmapEnvVal = process.env['N404_ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'N____ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID': idmap,
-    'N____ERROR_HANDLER_TEST_LIVE': 'FALSE',
-    'N____ERROR_HANDLER_TEST_EXPLAIN': 'FALSE',
+    'N404_ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID': idmap,
+    'N404_ERROR_HANDLER_TEST_LIVE': 'FALSE',
+    'N404_ERROR_HANDLER_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['N____ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID']
+  idmap = env['N404_ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID']
 
-  const live = 'TRUE' === env.N____ERROR_HANDLER_TEST_LIVE
+  const live = 'TRUE' === env.N404_ERROR_HANDLER_TEST_LIVE
 
   if (live) {
     client = new N404ErrorHandlerSDK(merge([
@@ -134,7 +134,7 @@ function basicSetup(extra?: any) {
     client,
     struct,
     data: entityData,
-    explain: 'TRUE' === env.N____ERROR_HANDLER_TEST_EXPLAIN,
+    explain: 'TRUE' === env.N404_ERROR_HANDLER_TEST_EXPLAIN,
     live,
     syntheticOnly: live && !idmapOverridden,
     now: Date.now(),

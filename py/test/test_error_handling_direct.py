@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from n404errorhandler_sdk.utility.voxgig_struct import voxgig_struct as vs
 from n404errorhandler_sdk import N404ErrorHandlerSDK
-from core import helpers
+from n404errorhandler_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _error_handling_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID": {},
-        "N___ERRORHANDLER_TEST_LIVE": "FALSE",
+        "N404_ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID": {},
+        "N404_ERROR_HANDLER_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("N___ERRORHANDLER_TEST_LIVE") == "TRUE"
+    live = env.get("N404_ERROR_HANDLER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

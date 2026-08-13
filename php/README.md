@@ -38,7 +38,7 @@ try {
     // list() returns an array of ErrorHandling records — iterate directly.
     $errorhandlings = $client->ErrorHandling()->list();
     foreach ($errorhandlings as $item) {
-        echo $item["caus"] . "\n";
+        echo $item["causes"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = N404ErrorHandlerSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $errorhandling = $client->ErrorHandling()->list();
 print_r($errorhandling);
 ```
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -246,8 +247,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `caus` |  |
-| `solution` |  |
+| `causes` |  |
+| `solutions` |  |
 | `timestamp` |  |
 | `url` |  |
 
@@ -274,8 +275,8 @@ Create an instance: `$error_handling = $client->ErrorHandling();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caus` | `array` |  |
-| `solution` | `array` |  |
+| `causes` | `array` |  |
+| `solutions` | `array` |  |
 | `timestamp` | `string` |  |
 | `url` | `string` |  |
 

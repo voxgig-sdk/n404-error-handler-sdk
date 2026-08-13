@@ -60,11 +60,11 @@ def error_handling_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "N___ERRORHANDLER_TEST_ERROR_HANDLING_ENTID" => {},
-    "N___ERRORHANDLER_TEST_LIVE" => "FALSE",
+    "N404_ERROR_HANDLER_TEST_ERROR_HANDLING_ENTID" => {},
+    "N404_ERROR_HANDLER_TEST_LIVE" => "FALSE",
   })
 
-  live = env["N___ERRORHANDLER_TEST_LIVE"] == "TRUE"
+  live = env["N404_ERROR_HANDLER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

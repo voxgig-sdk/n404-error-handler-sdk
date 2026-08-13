@@ -2,20 +2,20 @@
   "existing": {
     "error_handling": {
       "ERROR_HANDLING00": {
-        "caus": [],
-        "solution": [],
+        "causes": [],
+        "solutions": [],
         "timestamp": "s2a",
         "url": "s2b"
       },
       "ERROR_HANDLING01": {
-        "caus": [],
-        "solution": [],
+        "causes": [],
+        "solutions": [],
         "timestamp": "s52",
         "url": "s53"
       },
       "ERROR_HANDLING02": {
-        "caus": [],
-        "solution": [],
+        "causes": [],
+        "solutions": [],
         "timestamp": "s7a",
         "url": "s7b"
       }
@@ -24,8 +24,8 @@
   "new": {
     "error_handling": {
       "error_handling_ref01": {
-        "caus": [],
-        "solution": [],
+        "causes": [],
+        "solutions": [],
         "timestamp": "sa2",
         "url": "sa3"
       }

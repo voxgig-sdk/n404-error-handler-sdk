@@ -7,14 +7,14 @@
 -- edit by hand.
 
 ---@class ErrorHandling
----@field caus? table
----@field solution? table
+---@field causes? table
+---@field solutions? table
 ---@field timestamp? string
 ---@field url? string
 
 ---@class ErrorHandlingListMatch
----@field caus? table
----@field solution? table
+---@field causes? table
+---@field solutions? table
 ---@field timestamp? string
 ---@field url? string
 

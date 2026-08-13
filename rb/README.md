@@ -37,7 +37,7 @@ begin
   # list returns an Array of ErrorHandling records — iterate directly.
   errorhandlings = client.ErrorHandling.list
   errorhandlings.each do |item|
-    puts "#{item["caus"]}"
+    puts "#{item["causes"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = N404ErrorHandlerSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 errorhandling = client.ErrorHandling.list()
 puts errorhandling
 ```
@@ -236,8 +237,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `caus` |  |
-| `solution` |  |
+| `causes` |  |
+| `solutions` |  |
 | `timestamp` |  |
 | `url` |  |
 
@@ -264,8 +265,8 @@ Create an instance: `error_handling = client.ErrorHandling`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caus` | `Array` |  |
-| `solution` | `Array` |  |
+| `causes` | `Array` |  |
+| `solutions` | `Array` |  |
 | `timestamp` | `String` |  |
 | `url` | `String` |  |
 

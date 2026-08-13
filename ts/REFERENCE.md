@@ -116,8 +116,8 @@ const error_handling = client.ErrorHandling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | `any[]` | No |  |
-| `solution` | `any[]` | No |  |
+| `causes` | `any[]` | No |  |
+| `solutions` | `any[]` | No |  |
 | `timestamp` | `string` | No |  |
 | `url` | `string` | No |  |
 

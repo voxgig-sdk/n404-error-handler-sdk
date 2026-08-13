@@ -90,8 +90,8 @@ local error_handling = client:ErrorHandling(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | `table` | No |  |
-| `solution` | `table` | No |  |
+| `causes` | `table` | No |  |
+| `solutions` | `table` | No |  |
 | `timestamp` | `string` | No |  |
 | `url` | `string` | No |  |
 

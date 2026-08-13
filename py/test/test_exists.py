@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# N404ErrorHandler SDK exists test
 
 import pytest
 from n404errorhandler_sdk import N404ErrorHandlerSDK

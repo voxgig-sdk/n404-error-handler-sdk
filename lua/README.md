@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local error_handling, err = client:ErrorHandling():load()
+    local error_handling, err = client:ErrorHandling():list()
     if err then error(err) end
-    -- error_handling is the loaded record
+    -- error_handling is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -231,8 +231,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `caus` |  |
-| `solution` |  |
+| `causes` |  |
+| `solutions` |  |
 | `timestamp` |  |
 | `url` |  |
 
@@ -259,8 +259,8 @@ Create an instance: `local error_handling = client:ErrorHandling(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caus` | `table` |  |
-| `solution` | `table` |  |
+| `causes` | `table` |  |
+| `solutions` | `table` |  |
 | `timestamp` | `string` |  |
 | `url` | `string` |  |
 

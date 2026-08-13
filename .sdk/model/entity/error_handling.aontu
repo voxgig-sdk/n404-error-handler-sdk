@@ -6,12 +6,12 @@ main: kit: entity: error_handling: {
 
   fields: [
     {
-      name: "caus"
+      name: "causes"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "solution"
+      name: "solutions"
       req: false
       type: "`$ARRAY`"
     }

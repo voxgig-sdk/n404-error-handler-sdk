@@ -87,8 +87,8 @@ error_handling = client.ErrorHandling()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | `list` | No |  |
-| `solution` | `list` | No |  |
+| `causes` | `list` | No |  |
+| `solutions` | `list` | No |  |
 | `timestamp` | `str` | No |  |
 | `url` | `str` | No |  |
 

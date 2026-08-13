@@ -98,8 +98,8 @@ fmt.Println(errorHandling.GetName()) // "error_handling"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `caus` | `[]any` | No |  |
-| `solution` | `[]any` | No |  |
+| `causes` | `[]any` | No |  |
+| `solutions` | `[]any` | No |  |
 | `timestamp` | `string` | No |  |
 | `url` | `string` | No |  |
 

@@ -15,8 +15,8 @@ declare(strict_types=1);
 /** ErrorHandling entity data model. */
 class ErrorHandling
 {
-    public ?array $caus = null;
-    public ?array $solution = null;
+    public ?array $causes = null;
+    public ?array $solutions = null;
     public ?string $timestamp = null;
     public ?string $url = null;
 }
@@ -24,8 +24,8 @@ class ErrorHandling
 /** Request payload for ErrorHandling#list. */
 class ErrorHandlingListMatch
 {
-    public ?array $caus = null;
-    public ?array $solution = null;
+    public ?array $causes = null;
+    public ?array $solutions = null;
     public ?string $timestamp = null;
     public ?string $url = null;
 }

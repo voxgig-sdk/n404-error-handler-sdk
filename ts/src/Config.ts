@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'N404ErrorHandler',
   }
 
 
@@ -56,14 +56,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "caus",
+          "name": "causes",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "solution",
+          "name": "solutions",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -111,6 +111,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/404",
               "parts": [

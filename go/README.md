@@ -260,8 +260,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"caus"` |  |
-| `"solution"` |  |
+| `"causes"` |  |
+| `"solutions"` |  |
 | `"timestamp"` |  |
 | `"url"` |  |
 
@@ -288,8 +288,8 @@ Create an instance: `errorHandling := client.ErrorHandling(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `caus` | `[]any` |  |
-| `solution` | `[]any` |  |
+| `causes` | `[]any` |  |
+| `solutions` | `[]any` |  |
 | `timestamp` | `string` |  |
 | `url` | `string` |  |
 

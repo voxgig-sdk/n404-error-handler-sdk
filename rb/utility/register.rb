@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ N404ErrorHandlerUtility.registrar = ->(u) {
   u.prepare_params = N404ErrorHandlerUtilities::PrepareParams
   u.prepare_path = N404ErrorHandlerUtilities::PreparePath
   u.prepare_query = N404ErrorHandlerUtilities::PrepareQuery
+  u.graphql_body = N404ErrorHandlerUtilities::GraphqlBody
+  u.graphql_errors = N404ErrorHandlerUtilities::GraphqlErrors
   u.result_basic = N404ErrorHandlerUtilities::ResultBasic
   u.result_body = N404ErrorHandlerUtilities::ResultBody
   u.result_headers = N404ErrorHandlerUtilities::ResultHeaders

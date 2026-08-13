@@ -10,10 +10,10 @@
 
 # ErrorHandling entity data model.
 #
-# @!attribute [rw] caus
+# @!attribute [rw] causes
 #   @return [Array, nil]
 #
-# @!attribute [rw] solution
+# @!attribute [rw] solutions
 #   @return [Array, nil]
 #
 # @!attribute [rw] timestamp
@@ -22,8 +22,8 @@
 # @!attribute [rw] url
 #   @return [String, nil]
 ErrorHandling = Struct.new(
-  :caus,
-  :solution,
+  :causes,
+  :solutions,
   :timestamp,
   :url,
   keyword_init: true
@@ -31,10 +31,10 @@ ErrorHandling = Struct.new(
 
 # Request payload for ErrorHandling#list.
 #
-# @!attribute [rw] caus
+# @!attribute [rw] causes
 #   @return [Array, nil]
 #
-# @!attribute [rw] solution
+# @!attribute [rw] solutions
 #   @return [Array, nil]
 #
 # @!attribute [rw] timestamp
@@ -43,8 +43,8 @@ ErrorHandling = Struct.new(
 # @!attribute [rw] url
 #   @return [String, nil]
 ErrorHandlingListMatch = Struct.new(
-  :caus,
-  :solution,
+  :causes,
+  :solutions,
   :timestamp,
   :url,
   keyword_init: true

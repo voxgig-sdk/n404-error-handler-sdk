@@ -27,14 +27,14 @@ module N404ErrorHandlerConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "caus",
+              "name" => "causes",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "solution",
+              "name" => "solutions",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -82,6 +82,7 @@ module N404ErrorHandlerConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/404",
                   "parts" => [

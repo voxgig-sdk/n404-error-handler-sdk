@@ -37,7 +37,7 @@ class ErrorHandlingEntity extends N404ErrorHandlerEntityBase<ErrorHandling> {
 
 
 
-  async list(this: any, reqmatch?: ErrorHandlingListMatch, ctrl?: Control): Promise<ErrorHandling[]> {
+  async list(this: any, reqmatch?: ErrorHandlingListMatch, ctrl?: Control): Promise<ErrorHandlingEntity[]> {
 
     const utility = this._utility
 

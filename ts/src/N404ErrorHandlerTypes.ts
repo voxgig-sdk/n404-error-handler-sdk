@@ -6,15 +6,15 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface ErrorHandling {
-  caus?: any[]
-  solution?: any[]
+  causes?: any[]
+  solutions?: any[]
   timestamp?: string
   url?: string
 }
 
 export interface ErrorHandlingListMatch {
-  caus?: any[]
-  solution?: any[]
+  causes?: any[]
+  solutions?: any[]
   timestamp?: string
   url?: string
 }
