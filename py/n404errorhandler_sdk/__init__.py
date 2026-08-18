@@ -23,8 +23,8 @@ class N404ErrorHandlerSDK:
         utility = N404ErrorHandlerUtility()
         self._utility = utility
 
-        from n404errorhandler_sdk.config import make_config
-        config = make_config()
+        from n404errorhandler_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

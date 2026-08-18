@@ -33,7 +33,7 @@ class ErrorHandlingEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = N404ErrorHandlerConfig.make_config
+    cfg = N404ErrorHandlerConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = N404ErrorHandlerSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

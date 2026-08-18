@@ -40,7 +40,7 @@ class N404ErrorHandlerSDK
         $utility = new N404ErrorHandlerUtility();
         $this->_utility = $utility;
 
-        $config = N404ErrorHandlerConfig::make_config();
+        $config = N404ErrorHandlerConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

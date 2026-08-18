@@ -15,7 +15,7 @@ require_relative "../N404ErrorHandler_sdk"
 module N404ErrorHandlerFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = N404ErrorHandlerConfig.make_config["feature"]
+    f = N404ErrorHandlerConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -23,7 +23,7 @@ func NewN404ErrorHandlerSDK(options map[string]any) *N404ErrorHandlerSDK {
 
 	sdk.utility = NewUtility()
 
-	config := MakeConfig()
+	config := SharedConfig()
 
 	sdk.rootctx = sdk.utility.MakeContext(map[string]any{
 		"client":  sdk,

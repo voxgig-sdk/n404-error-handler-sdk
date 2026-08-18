@@ -40,7 +40,7 @@ class ErrorHandlingEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = N404ErrorHandlerConfig::make_config();
+        $cfg = N404ErrorHandlerConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = N404ErrorHandlerSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

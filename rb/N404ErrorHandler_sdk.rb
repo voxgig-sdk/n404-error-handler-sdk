@@ -28,7 +28,7 @@ class N404ErrorHandlerSDK
     utility = N404ErrorHandlerUtility.new
     @_utility = utility
 
-    config = N404ErrorHandlerConfig.make_config
+    config = N404ErrorHandlerConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

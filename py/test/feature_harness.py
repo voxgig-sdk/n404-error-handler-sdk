@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from n404errorhandler_sdk.config import make_config
+from n404errorhandler_sdk.config import shared_config
 from n404errorhandler_sdk.features import _make_feature
 from n404errorhandler_sdk.core.control import N404ErrorHandlerControl
 from n404errorhandler_sdk.core.error import N404ErrorHandlerError
@@ -24,7 +24,7 @@ from n404errorhandler_sdk.core.spec import N404ErrorHandlerSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

@@ -23,6 +23,7 @@ build = {
   modules = {
     ["n404-error-handler_sdk"] = "n404-error-handler_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }
