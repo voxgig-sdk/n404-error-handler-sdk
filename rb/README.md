@@ -237,10 +237,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `causes` |  |
-| `solutions` |  |
-| `timestamp` |  |
-| `url` |  |
+| `causes` | Potential causes for the 404 error |
+| `solutions` | Suggested solutions to fix the error |
+| `timestamp` | Timestamp when the error was recorded |
+| `url` | The requested URL that returned 404 |
 
 Operations: List.
 
@@ -265,10 +265,10 @@ Create an instance: `error_handling = client.ErrorHandling`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `causes` | `Array` |  |
-| `solutions` | `Array` |  |
-| `timestamp` | `String` |  |
-| `url` | `String` |  |
+| `causes` | `Array` | Potential causes for the 404 error |
+| `solutions` | `Array` | Suggested solutions to fix the error |
+| `timestamp` | `String` | Timestamp when the error was recorded |
+| `url` | `String` | The requested URL that returned 404 |
 
 #### Example: List
 

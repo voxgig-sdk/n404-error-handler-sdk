@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -287,10 +287,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `causes` |  |
-| `solutions` |  |
-| `timestamp` |  |
-| `url` |  |
+| `causes` | Potential causes for the 404 error |
+| `solutions` | Suggested solutions to fix the error |
+| `timestamp` | Timestamp when the error was recorded |
+| `url` | The requested URL that returned 404 |
 
 Operations: list.
 
@@ -315,10 +315,10 @@ Create an instance: `const error_handling = client.ErrorHandling()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `causes` | `any[]` |  |
-| `solutions` | `any[]` |  |
-| `timestamp` | `string` |  |
-| `url` | `string` |  |
+| `causes` | `any[]` | Potential causes for the 404 error |
+| `solutions` | `any[]` | Suggested solutions to fix the error |
+| `timestamp` | `string` | Timestamp when the error was recorded |
+| `url` | `string` | The requested URL that returned 404 |
 
 #### Example: List
 

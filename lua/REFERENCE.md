@@ -90,10 +90,10 @@ local error_handling = client:ErrorHandling(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `causes` | `table` | No |  |
-| `solutions` | `table` | No |  |
-| `timestamp` | `string` | No |  |
-| `url` | `string` | No |  |
+| `causes` | `table` | No | Potential causes for the 404 error |
+| `solutions` | `table` | No | Suggested solutions to fix the error |
+| `timestamp` | `string` | No | Timestamp when the error was recorded |
+| `url` | `string` | No | The requested URL that returned 404 |
 
 ### Operations
 

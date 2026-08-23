@@ -92,10 +92,10 @@ $error_handling = $client->ErrorHandling();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `causes` | `array` | No |  |
-| `solutions` | `array` | No |  |
-| `timestamp` | `string` | No |  |
-| `url` | `string` | No |  |
+| `causes` | `array` | No | Potential causes for the 404 error |
+| `solutions` | `array` | No | Suggested solutions to fix the error |
+| `timestamp` | `string` | No | Timestamp when the error was recorded |
+| `url` | `string` | No | The requested URL that returned 404 |
 
 ### Operations
 

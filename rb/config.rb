@@ -19,6 +19,9 @@ module N404ErrorHandlerConfig
     {
       "main" => {
         "name" => "N404ErrorHandler",
+        "slug" => "n404-error-handler",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -41,18 +44,22 @@ module N404ErrorHandlerConfig
           "fields" => [
             {
               "name" => "causes",
+              "short" => "Potential causes for the 404 error",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "solutions",
+              "short" => "Suggested solutions to fix the error",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "timestamp",
+              "short" => "Timestamp when the error was recorded",
               "type" => "`$STRING`",
             },
             {
               "name" => "url",
+              "short" => "The requested URL that returned 404",
               "type" => "`$STRING`",
             },
           ],

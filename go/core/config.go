@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "N404ErrorHandler",
+			"slug": "n404-error-handler",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -33,18 +36,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "causes",
+						"short": "Potential causes for the 404 error",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "solutions",
+						"short": "Suggested solutions to fix the error",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp when the error was recorded",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "url",
+						"short": "The requested URL that returned 404",
 						"type": "`$STRING`",
 					},
 				},

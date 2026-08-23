@@ -243,10 +243,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `causes` |  |
-| `solutions` |  |
-| `timestamp` |  |
-| `url` |  |
+| `causes` | Potential causes for the 404 error |
+| `solutions` | Suggested solutions to fix the error |
+| `timestamp` | Timestamp when the error was recorded |
+| `url` | The requested URL that returned 404 |
 
 Operations: List.
 
@@ -271,10 +271,10 @@ Create an instance: `error_handling = client.ErrorHandling()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `causes` | `list` |  |
-| `solutions` | `list` |  |
-| `timestamp` | `str` |  |
-| `url` | `str` |  |
+| `causes` | `list` | Potential causes for the 404 error |
+| `solutions` | `list` | Suggested solutions to fix the error |
+| `timestamp` | `str` | Timestamp when the error was recorded |
+| `url` | `str` | The requested URL that returned 404 |
 
 #### Example: List
 

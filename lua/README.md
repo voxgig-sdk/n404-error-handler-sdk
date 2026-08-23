@@ -231,10 +231,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `causes` |  |
-| `solutions` |  |
-| `timestamp` |  |
-| `url` |  |
+| `causes` | Potential causes for the 404 error |
+| `solutions` | Suggested solutions to fix the error |
+| `timestamp` | Timestamp when the error was recorded |
+| `url` | The requested URL that returned 404 |
 
 Operations: List.
 
@@ -259,10 +259,10 @@ Create an instance: `local error_handling = client:ErrorHandling(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `causes` | `table` |  |
-| `solutions` | `table` |  |
-| `timestamp` | `string` |  |
-| `url` | `string` |  |
+| `causes` | `table` | Potential causes for the 404 error |
+| `solutions` | `table` | Suggested solutions to fix the error |
+| `timestamp` | `string` | Timestamp when the error was recorded |
+| `url` | `string` | The requested URL that returned 404 |
 
 #### Example: List
 

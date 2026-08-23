@@ -6,7 +6,7 @@ The Golang SDK for the N404ErrorHandler API — an entity-oriented client using 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.ErrorHandling(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,10 +260,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"causes"` |  |
-| `"solutions"` |  |
-| `"timestamp"` |  |
-| `"url"` |  |
+| `"causes"` | Potential causes for the 404 error |
+| `"solutions"` | Suggested solutions to fix the error |
+| `"timestamp"` | Timestamp when the error was recorded |
+| `"url"` | The requested URL that returned 404 |
 
 Operations: List.
 
@@ -288,10 +288,10 @@ Create an instance: `errorHandling := client.ErrorHandling(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `causes` | `[]any` |  |
-| `solutions` | `[]any` |  |
-| `timestamp` | `string` |  |
-| `url` | `string` |  |
+| `causes` | `[]any` | Potential causes for the 404 error |
+| `solutions` | `[]any` | Suggested solutions to fix the error |
+| `timestamp` | `string` | Timestamp when the error was recorded |
+| `url` | `string` | The requested URL that returned 404 |
 
 #### Example: List
 

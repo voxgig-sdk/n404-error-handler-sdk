@@ -93,10 +93,10 @@ error_handling = client.ErrorHandling
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `causes` | `Array` | No |  |
-| `solutions` | `Array` | No |  |
-| `timestamp` | `String` | No |  |
-| `url` | `String` | No |  |
+| `causes` | `Array` | No | Potential causes for the 404 error |
+| `solutions` | `Array` | No | Suggested solutions to fix the error |
+| `timestamp` | `String` | No | Timestamp when the error was recorded |
+| `url` | `String` | No | The requested URL that returned 404 |
 
 ### Operations
 

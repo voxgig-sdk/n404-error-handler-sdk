@@ -247,10 +247,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `causes` |  |
-| `solutions` |  |
-| `timestamp` |  |
-| `url` |  |
+| `causes` | Potential causes for the 404 error |
+| `solutions` | Suggested solutions to fix the error |
+| `timestamp` | Timestamp when the error was recorded |
+| `url` | The requested URL that returned 404 |
 
 Operations: List.
 
@@ -275,10 +275,10 @@ Create an instance: `$error_handling = $client->ErrorHandling();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `causes` | `array` |  |
-| `solutions` | `array` |  |
-| `timestamp` | `string` |  |
-| `url` | `string` |  |
+| `causes` | `array` | Potential causes for the 404 error |
+| `solutions` | `array` | Suggested solutions to fix the error |
+| `timestamp` | `string` | Timestamp when the error was recorded |
+| `url` | `string` | The requested URL that returned 404 |
 
 #### Example: List
 

@@ -8,21 +8,25 @@ main: kit: entity: error_handling: {
     {
       name: "causes"
       req: false
+      short: "Potential causes for the 404 error"
       type: "`$ARRAY`"
     }
     {
       name: "solutions"
       req: false
+      short: "Suggested solutions to fix the error"
       type: "`$ARRAY`"
     }
     {
       name: "timestamp"
       req: false
+      short: "Timestamp when the error was recorded"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: false
+      short: "The requested URL that returned 404"
       type: "`$STRING`"
     }
   ]
