@@ -28,6 +28,7 @@ module N404ErrorHandlerConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
