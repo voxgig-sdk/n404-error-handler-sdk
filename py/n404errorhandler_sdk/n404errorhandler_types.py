@@ -24,7 +24,5 @@ class ErrorHandling(TypedDict, total=False):
 
 
 class ErrorHandlingListMatch(TypedDict, total=False):
-    causes: list
-    solutions: list
-    timestamp: str
+    referrer: str
     url: str

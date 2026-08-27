@@ -22,9 +22,7 @@ type ErrorHandling struct {
 
 // ErrorHandlingListMatch is the typed request payload for ErrorHandling.ListTyped.
 type ErrorHandlingListMatch struct {
-	Causes *[]any `json:"causes,omitempty"`
-	Solutions *[]any `json:"solutions,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
+	Referrer *string `json:"referrer,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 

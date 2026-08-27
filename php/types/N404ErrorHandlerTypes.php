@@ -24,9 +24,7 @@ class ErrorHandling
 /** Request payload for ErrorHandling#list. */
 class ErrorHandlingListMatch
 {
-    public ?array $causes = null;
-    public ?array $solutions = null;
-    public ?string $timestamp = null;
+    public ?string $referrer = null;
     public ?string $url = null;
 }
 

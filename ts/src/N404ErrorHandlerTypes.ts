@@ -13,9 +13,7 @@ export interface ErrorHandling {
 }
 
 export interface ErrorHandlingListMatch {
-  causes?: any[]
-  solutions?: any[]
-  timestamp?: string
+  referrer?: string
   url?: string
 }
 

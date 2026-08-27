@@ -31,21 +31,13 @@ ErrorHandling = Struct.new(
 
 # Request payload for ErrorHandling#list.
 #
-# @!attribute [rw] causes
-#   @return [Array, nil]
-#
-# @!attribute [rw] solutions
-#   @return [Array, nil]
-#
-# @!attribute [rw] timestamp
+# @!attribute [rw] referrer
 #   @return [String, nil]
 #
 # @!attribute [rw] url
 #   @return [String, nil]
 ErrorHandlingListMatch = Struct.new(
-  :causes,
-  :solutions,
-  :timestamp,
+  :referrer,
   :url,
   keyword_init: true
 )
