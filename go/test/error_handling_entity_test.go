@@ -98,7 +98,7 @@ func TestErrorHandlingEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		errorHandlingRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.error_handling", setup.data)))
+		errorHandlingRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.error_handling")))
 		var errorHandlingRef01Data map[string]any
 		if len(errorHandlingRef01DataRaw) > 0 {
 			errorHandlingRef01Data = core.ToMapAny(errorHandlingRef01DataRaw[0][1])
@@ -147,7 +147,7 @@ func error_handlingBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"error_handling01", "error_handling02", "error_handling03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -175,10 +175,22 @@ func error_handlingBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["N404_ERROR_HANDLER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewN404ErrorHandlerSDK(core.ToMapAny(mergedOpts))
 	}

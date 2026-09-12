@@ -68,6 +68,7 @@ class N404ErrorHandlerConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'timestamp',
               'short' => 'Timestamp when the error was recorded',
               'type' => '`$STRING`',
@@ -104,8 +105,10 @@ class N404ErrorHandlerConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/404',
-                  'parts' => [
-                    '404',
+                  'segments' => [
+                    [
+                      'lit' => '404',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -116,6 +119,9 @@ class N404ErrorHandlerConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '404',
                   ],
                 ],
               ],

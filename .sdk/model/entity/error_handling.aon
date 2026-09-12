@@ -18,6 +18,7 @@ main: kit: entity: error_handling: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "timestamp"
       req: false
       short: "Timestamp when the error was recorded"
@@ -57,8 +58,10 @@ main: kit: entity: error_handling: {
           }
           method: "GET"
           orig: "/404"
-          parts: [
-            "404"
+          segments: [
+            {
+              lit: "404"
+            }
           ]
           select: {
             exist: [

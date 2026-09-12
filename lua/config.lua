@@ -42,6 +42,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "timestamp",
             ["short"] = "Timestamp when the error was recorded",
             ["type"] = "`$STRING`",
@@ -78,8 +79,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/404",
-                ["parts"] = {
-                  "404",
+                ["segments"] = {
+                  {
+                    ["lit"] = "404",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -90,6 +93,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "404",
                 },
               },
             },

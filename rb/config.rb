@@ -54,6 +54,7 @@ module N404ErrorHandlerConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "date-time",
               "name" => "timestamp",
               "short" => "Timestamp when the error was recorded",
               "type" => "`$STRING`",
@@ -90,8 +91,10 @@ module N404ErrorHandlerConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/404",
-                  "parts" => [
-                    "404",
+                  "segments" => [
+                    {
+                      "lit" => "404",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -103,6 +106,9 @@ module N404ErrorHandlerConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "404",
+                  ],
                 },
               ],
             },

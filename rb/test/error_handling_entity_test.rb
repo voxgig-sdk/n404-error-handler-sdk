@@ -128,6 +128,9 @@ def error_handling_basic_setup(extra)
 
   if env["N404_ERROR_HANDLER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
       },
       extra || {},
