@@ -105,7 +105,7 @@ local results, err = client:ErrorHandling():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
+| TypeScript | `@voxgig-sdk/n404-error-handler-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
 | Python | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
 | PHP | `voxgig-sdk/n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/n404-error-handler-sdk/go` | `go get github.com/voxgig-sdk/n404-error-handler-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:ErrorHandling():list()
 ### TypeScript
 
 ```ts
-import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler'
+import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler-sdk'
 
 const client = new N404ErrorHandlerSDK()
 

@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler'
+import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler-sdk'
 
 const client = new N404ErrorHandlerSDK()
 ```
@@ -409,7 +409,7 @@ n404-error-handler/
 Import the SDK from the package root:
 
 ```ts
-import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler'
+import { N404ErrorHandlerSDK } from '@voxgig-sdk/n404-error-handler-sdk'
 ```
 
 ### Entity state
