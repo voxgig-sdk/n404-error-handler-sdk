@@ -4,7 +4,10 @@ declare(strict_types=1);
 // N404ErrorHandler SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class N404ErrorHandlerFeatures
@@ -14,8 +17,14 @@ class N404ErrorHandlerFeatures
         switch ($name) {
             case "base":
                 return new N404ErrorHandlerBaseFeature();
+            case "ratelimit":
+                return new N404ErrorHandlerRatelimitFeature();
+            case "retry":
+                return new N404ErrorHandlerRetryFeature();
             case "test":
                 return new N404ErrorHandlerTestFeature();
+            case "timeout":
+                return new N404ErrorHandlerTimeoutFeature();
             default:
                 return new N404ErrorHandlerBaseFeature();
         }
@@ -31,7 +40,10 @@ class N404ErrorHandlerFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
