@@ -105,12 +105,12 @@ local results, err = client:ErrorHandling():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/n404-error-handler-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
-| Python | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
-| PHP | `voxgig-sdk/n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
+| TypeScript | `@voxgig-sdk/n404-error-handler-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags) |
+| Python | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags) |
+| PHP | `voxgig-sdk/n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/n404-error-handler-sdk/go` | `go get github.com/voxgig-sdk/n404-error-handler-sdk/go@latest` |
-| Ruby | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
-| Lua | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases) |
+| Ruby | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags) |
+| Lua | `voxgig-sdk-n404-error-handler` | publish pending — [install from git tag](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/n404-error-handler-sdk/go-cli` | `go install github.com/voxgig-sdk/n404-error-handler-sdk/go-cli/cmd/n404-error-handler@latest` |
 | Go MCP server | `github.com/voxgig-sdk/n404-error-handler-sdk/go-mcp` | `go get github.com/voxgig-sdk/n404-error-handler-sdk/go-mcp@latest` |
 

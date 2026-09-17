@@ -127,9 +127,9 @@ class Config {
 
     entity: {
       
-      error_handling: {
-      },
-
+        error_handling: {
+        },
+  
     }
   }
 
