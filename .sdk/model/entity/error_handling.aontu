@@ -1,0 +1,92 @@
+# Entity: error_handling
+
+main: kit: entity: error_handling: {
+
+  alias: field: {}
+
+  fields: {
+    causes: {
+      h: "Causes"
+      n: "causes"
+      r: false
+      sh: "Potential causes for the 404 error"
+      t: "`$ARRAY`"
+    }
+    solutions: {
+      h: "Solutions"
+      n: "solutions"
+      r: false
+      sh: "Suggested solutions to fix the error"
+      t: "`$ARRAY`"
+    }
+    timestamp: {
+      fo: "date-time"
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Timestamp when the error was recorded"
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The requested URL that returned 404"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "error_handling"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /404"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "referrer"
+                or: "referrer"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "url"
+                or: "url"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/404"
+          q: {
+            exist: [
+              "referrer"
+              "url"
+            ]
+          }
+          s: [
+            {
+              lit: "404"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ErrorHandlingEntity = void 0;
 const N404ErrorHandlerEntityBase_1 = require("../N404ErrorHandlerEntityBase");
-// TODO: needs Entity superclass
 class ErrorHandlingEntity extends N404ErrorHandlerEntityBase_1.N404ErrorHandlerEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

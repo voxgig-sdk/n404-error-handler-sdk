@@ -1,7 +1,7 @@
 // Typed models for the N404ErrorHandler SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,10 +14,6 @@ import (
 
 // ErrorHandling is the typed data model for the error_handling entity.
 type ErrorHandling struct {
-	Causes *[]any `json:"causes,omitempty"`
-	Solutions *[]any `json:"solutions,omitempty"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Url *string `json:"url,omitempty"`
 }
 
 // ErrorHandlingListMatch is the typed request payload for ErrorHandling.ListTyped.

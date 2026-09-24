@@ -99,24 +99,28 @@ module N404ErrorHandlerConfig
           "fields" => [
             {
               "name" => "causes",
-              "short" => "Potential causes for the 404 error",
+              "title" => "Causes",
               "type" => "`$ARRAY`",
+              "short" => "Potential causes for the 404 error",
             },
             {
               "name" => "solutions",
-              "short" => "Suggested solutions to fix the error",
+              "title" => "Solutions",
               "type" => "`$ARRAY`",
+              "short" => "Suggested solutions to fix the error",
             },
             {
-              "format" => "date-time",
               "name" => "timestamp",
-              "short" => "Timestamp when the error was recorded",
+              "title" => "Timestamp",
               "type" => "`$STRING`",
+              "short" => "Timestamp when the error was recorded",
+              "format" => "date-time",
             },
             {
               "name" => "url",
-              "short" => "The requested URL that returned 404",
+              "title" => "Url",
               "type" => "`$STRING`",
+              "short" => "The requested URL that returned 404",
             },
           ],
           "name" => "error_handling",
@@ -126,22 +130,6 @@ module N404ErrorHandlerConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "referrer",
-                        "orig" => "referrer",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "url",
-                        "orig" => "url",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/404",
@@ -150,19 +138,36 @@ module N404ErrorHandlerConfig
                       "lit" => "404",
                     },
                   ],
+                  "parts" => [
+                    "404",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "referrer",
+                        "orig" => "referrer",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "url",
+                        "orig" => "url",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "referrer",
                       "url",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "404",
-                  ],
                 },
               ],
             },

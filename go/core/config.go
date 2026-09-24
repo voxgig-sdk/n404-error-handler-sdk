@@ -91,24 +91,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "causes",
-						"short": "Potential causes for the 404 error",
+						"title": "Causes",
 						"type": "`$ARRAY`",
+						"short": "Potential causes for the 404 error",
 					},
 					map[string]any{
 						"name": "solutions",
-						"short": "Suggested solutions to fix the error",
+						"title": "Solutions",
 						"type": "`$ARRAY`",
+						"short": "Suggested solutions to fix the error",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "timestamp",
-						"short": "Timestamp when the error was recorded",
+						"title": "Timestamp",
 						"type": "`$STRING`",
+						"short": "Timestamp when the error was recorded",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "url",
-						"short": "The requested URL that returned 404",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "The requested URL that returned 404",
 					},
 				},
 				"name": "error_handling",
@@ -118,22 +122,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "referrer",
-											"orig": "referrer",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "url",
-											"orig": "url",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/404",
@@ -142,18 +130,35 @@ func MakeConfig() map[string]any {
 										"lit": "404",
 									},
 								},
+								"parts": []any{
+									"404",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "referrer",
+											"orig": "referrer",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "url",
+											"orig": "url",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"referrer",
 										"url",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"404",
 								},
 							},
 						},

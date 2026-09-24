@@ -43,7 +43,7 @@ local errorhandlings, err = client:ErrorHandling():list()
 if err then error(err) end
 
 for _, item in ipairs(errorhandlings) do
-  print(item["timestamp"])
+  print(item)
 end
 ```
 

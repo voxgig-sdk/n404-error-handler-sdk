@@ -19,7 +19,6 @@ import type {
   ErrorHandlingListMatch,
 } from '../N404ErrorHandlerTypes'
 
-// TODO: needs Entity superclass
 class ErrorHandlingEntity extends N404ErrorHandlerEntityBase<ErrorHandling> {
 
   constructor(client: N404ErrorHandlerSDK, entopts: any) {
