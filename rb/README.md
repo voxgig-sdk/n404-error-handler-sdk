@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/n404-error-handler-sdk/releases](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/n404-error-handler-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-n404-error-handler-sdk", path: "./n404-error-handler-sdk/rb"
+```
 
 
 ## Tutorial: your first API call

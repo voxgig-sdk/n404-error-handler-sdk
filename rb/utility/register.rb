@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 N404ErrorHandlerUtility.registrar = ->(u) {
   u.clean = N404ErrorHandlerUtilities::Clean
+  u.clean_add = N404ErrorHandlerUtilities::CleanAdd
+  u.clean_explain = N404ErrorHandlerUtilities::CleanExplain
   u.done = N404ErrorHandlerUtilities::Done
   u.make_error = N404ErrorHandlerUtilities::MakeError
   u.feature_add = N404ErrorHandlerUtilities::FeatureAdd

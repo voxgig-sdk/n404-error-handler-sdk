@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 N404ErrorHandlerUtility::setRegistrar(function (N404ErrorHandlerUtility $u): void {
     $u->clean = [N404ErrorHandlerClean::class, 'call'];
+    $u->clean_add = [N404ErrorHandlerClean::class, 'add'];
+    $u->clean_explain = [N404ErrorHandlerDone::class, 'clean_explain'];
     $u->done = [N404ErrorHandlerDone::class, 'call'];
     $u->make_error = [N404ErrorHandlerMakeError::class, 'call'];
     $u->feature_add = [N404ErrorHandlerFeatureAdd::class, 'call'];
