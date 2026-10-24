@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = N404ErrorHandlerSDK.new
 
 ```ruby
 begin
-  # list returns an Array of ErrorHandling records — iterate directly.
+  # list returns an Array of ErrorHandling entities, one per record; data_get reads the record.
   errorhandlings = client.ErrorHandling.list
   errorhandlings.each do |item|
-    puts "#{item["causes"]}"
+    record = item.data_get
+    puts "#{record["causes"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = N404ErrorHandlerSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-errorhandling = client.ErrorHandling.list()
-puts errorhandling
+# list returns an Array of ErrorHandling entities, one per mock record (raises on
+# error); data_get reads each record.
+errorhandlings = client.ErrorHandling.list()
+errorhandlings.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +226,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `N404ErrorHandlerError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`N404ErrorHandlerError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -282,8 +284,9 @@ Create an instance: `error_handling = client.ErrorHandling`
 #### Example: List
 
 ```ruby
-# list returns an Array of ErrorHandling records (raises on error).
+# list returns an Array of ErrorHandling entities, one per record (raises on error).
 error_handlings = client.ErrorHandling.list
+error_handlings.each { |item| puts item.data_get }
 ```
 
 ## Features

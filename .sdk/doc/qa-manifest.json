@@ -3,5 +3,16 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Potential causes for the 404 error",
+      "Production server",
+      "Successful response with 404 error analysis",
+      "Suggested solutions to fix the error",
+      "The requested URL that returned 404",
+      "This API is designed to help developers manage and respond to 404 errors on their websites. It provides insights into potential causes and offers solutions for correcting broken links and missing files to improve user experience.",
+      "Timestamp when the error was recorded"
+    ]
+  }
 }

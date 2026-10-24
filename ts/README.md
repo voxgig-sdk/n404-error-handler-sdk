@@ -15,7 +15,7 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/n404-error-handler-sdk/releases)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/n404-error-handler-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
@@ -47,7 +47,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 const errorhandlings = await client.ErrorHandling().list()
 
 for (const errorhandling of errorhandlings) {
-  console.log(errorhandling)
+  console.log(errorhandling.data())
 }
 ```
 
@@ -59,14 +59,15 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 ```ts
 try {
   const errorhandlings = await client.ErrorHandling().list()
-  console.log(errorhandlings)
+  console.log(errorhandlings.map((item) => item.data()))
 } catch (err) {
   console.error('list failed:', err)
 }
 ```
 
 The low-level `direct()` method does **not** throw — it returns the
-value or an `Error`, so check the result before using it:
+result envelope. Branch on `ok`; on failure `status` holds the HTTP status
+(for error responses) and `err` holds the error:
 
 ```ts
 const result = await client.direct({
@@ -75,8 +76,8 @@ const result = await client.direct({
   params: { id: 'example_id' },
 })
 
-if (result instanceof Error) {
-  throw result
+if (!result.ok) {
+  console.error('request failed:', result.status, result.err)
 }
 ```
 
@@ -94,9 +95,6 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
-if (result instanceof Error) {
-  throw result
-}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -125,10 +123,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = N404ErrorHandlerSDK.test()
 
-const errorhandling = await client.ErrorHandling().list()
-// errorhandling is the entity, populated with mock response data
-// — call errorhandling.data() for the record itself
-console.log(errorhandling)
+const errorhandlings = await client.ErrorHandling().list()
+// errorhandlings is an array of ErrorHandling entities, one per mock record
+console.log(errorhandlings.map((errorhandling) => errorhandling.data()))
 ```
 
 You can also use the instance method:
@@ -243,7 +240,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria, one per record. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -252,8 +249,8 @@ All entities share the same interface.
 
 #### Return values
 
-Entity operations resolve to the entity data directly — there is no
-result envelope:
+Entity operations resolve to the entity itself — there is no result
+envelope, and an entity's `data()` reads its record:
 
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).

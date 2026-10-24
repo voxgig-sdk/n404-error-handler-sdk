@@ -93,6 +93,7 @@ class N404ErrorHandlerConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -173,14 +174,14 @@ class N404ErrorHandlerConfig
                         'orig' => 'url',
                         'type' => '`$STRING`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'referrer',
-                      'url',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

@@ -20,9 +20,23 @@ const PLAN: any[] = [
       "url": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "url",
       "referrer"
+    ],
+    "queryArgs": [
+      {
+        "name": "referrer",
+        "wire": "referrer"
+      },
+      {
+        "name": "url",
+        "wire": "url"
+      }
     ],
     "auth": null,
     "status": 200,

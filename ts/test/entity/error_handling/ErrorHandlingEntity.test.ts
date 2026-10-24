@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { N404ErrorHandlerSDK, BaseFeature, stdutil } from '../../..'
+import { N404ErrorHandlerSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('ErrorHandlingEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('error_handling hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of N404ErrorHandlerSDK.test(offline).ErrorHandling().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of N404ErrorHandlerSDK.test(offline).ErrorHandling()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = N404ErrorHandlerSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.ErrorHandling().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of N404ErrorHandlerSDK.test().ErrorHandling().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new N404ErrorHandlerSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.ErrorHandling().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.ErrorHandling().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = N404ErrorHandlerSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.ErrorHandling().list({"referrer":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.N404_ERROR_HANDLER_TEST_LIVE
@@ -51,7 +109,7 @@ describe('ErrorHandlingEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"causes":{"a":true,"h":"Causes","n":"causes","r":false,"sh":"Potential causes for the 404 error","t":"`$ARRAY`","key$":"causes","index$":0},"solutions":{"a":true,"h":"Solutions","n":"solutions","r":false,"sh":"Suggested solutions to fix the error","t":"`$ARRAY`","key$":"solutions","index$":1},"timestamp":{"a":true,"fo":"date-time","h":"Timestamp","n":"timestamp","r":false,"sh":"Timestamp when the error was recorded","t":"`$STRING`","key$":"timestamp","index$":2},"url":{"a":true,"h":"Url","n":"url","r":false,"sh":"The requested URL that returned 404","t":"`$STRING`","key$":"url","index$":3}},"name":"error_handling","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /404","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"referrer","or":"referrer","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"url","or":"url","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/404","q":{"exist":["referrer","url"]},"r":{},"s":[{"lit":"404"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"error_handling","name__orig":"error_handling","Name":"ErrorHandling","name_":"error_handling","name-":"error-handling","NAME":"ERROR_HANDLING","index$":0}, {"active":true,"entity":"error_handling","key$":"BasicErrorHandlingFlow","kind":"basic","name":"BasicErrorHandlingFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"error_handling_ref01"}}],"index$":0}]}, 'ErrorHandling', {"GET /404":{"protocol":"http","parameters":[{"name":"url","in":"query","description":"The URL that resulted in a 404 error","required":false,"schema":{"type":"string","format":"uri"},"index$":0},{"name":"referrer","in":"query","description":"The referring URL where the broken link was found","required":false,"schema":{"type":"string","format":"uri"},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"causes":{"a":true,"h":"Causes","n":"causes","r":false,"sh":"Potential causes for the 404 error","t":"`$ARRAY`","key$":"causes","index$":0},"solutions":{"a":true,"h":"Solutions","n":"solutions","r":false,"sh":"Suggested solutions to fix the error","t":"`$ARRAY`","key$":"solutions","index$":1},"timestamp":{"a":true,"fo":"date-time","h":"Timestamp","n":"timestamp","r":false,"sh":"Timestamp when the error was recorded","t":"`$STRING`","key$":"timestamp","index$":2},"url":{"a":true,"h":"Url","n":"url","r":false,"sh":"The requested URL that returned 404","t":"`$STRING`","key$":"url","index$":3}},"name":"error_handling","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /404","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"referrer","or":"referrer","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"url","or":"url","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/404","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"404"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"error_handling","name__orig":"error_handling","Name":"ErrorHandling","name_":"error_handling","name-":"error-handling","NAME":"ERROR_HANDLING","index$":0}, {"active":true,"entity":"error_handling","key$":"BasicErrorHandlingFlow","kind":"basic","name":"BasicErrorHandlingFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"error_handling_ref01"}}],"index$":0}]}, 'ErrorHandling', {"GET /404":{"protocol":"http","parameters":[{"name":"url","in":"query","description":"The URL that resulted in a 404 error","required":false,"schema":{"type":"string","format":"uri"},"index$":0},{"name":"referrer","in":"query","description":"The referring URL where the broken link was found","required":false,"schema":{"type":"string","format":"uri"},"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('ErrorHandlingEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

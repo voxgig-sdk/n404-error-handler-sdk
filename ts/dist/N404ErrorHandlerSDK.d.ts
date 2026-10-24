@@ -7,6 +7,19 @@ import { N404ErrorHandlerEntityBase } from './N404ErrorHandlerEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class N404ErrorHandlerSDK {
     _mode: string;
     _options: any;
@@ -17,32 +30,8 @@ declare class N404ErrorHandlerSDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     ErrorHandling(entopts?: Record<string, any>): ErrorHandlingEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): N404ErrorHandlerSDK;
@@ -55,3 +44,4 @@ declare class N404ErrorHandlerSDK {
 }
 declare const SDK: typeof N404ErrorHandlerSDK;
 export { stdutil, config, BaseFeature, N404ErrorHandlerEntityBase, N404ErrorHandlerSDK, SDK, };
+export type { DirectResult };

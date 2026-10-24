@@ -12,6 +12,8 @@ type N404ErrorHandlerError struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewN404ErrorHandlerError(code string, msg string, ctx *Context) *N404ErrorHandlerError {
@@ -21,7 +23,12 @@ func NewN404ErrorHandlerError(code string, msg string, ctx *Context) *N404ErrorH
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *N404ErrorHandlerError) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *N404ErrorHandlerError) Error() string {
@@ -35,6 +42,7 @@ func (e *N404ErrorHandlerError) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}

@@ -67,11 +67,9 @@ main: kit: entity: error_handling: {
           }
           m: "GET"
           o: "/404"
-          q: {
-            exist: [
-              "referrer"
-              "url"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
